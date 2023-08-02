@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DirectionViewController" customModule="chatCat" customModuleProvider="target">
+            <connections>
+                <outlet property="directionLable" destination="UZ4-HS-SGU" id="xr9-Uh-B0u"/>
+                <outlet property="directionLable1" destination="r0K-96-miL" id="oas-Kq-Lzm"/>
+                <outlet property="directionLable2" destination="33N-gp-0Yz" id="l88-dW-ACr"/>
+                <outlet property="titleLable" destination="apN-8F-Tz1" id="7bX-eH-goW"/>
+                <outlet property="view" destination="iN0-l3-epB" id="Kom-rV-ZML"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Fo-H1-eqk">
+                    <rect key="frame" x="173" y="8" width="47" height="4"/>
+                    <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="47" id="Cz0-1t-yxV"/>
+                        <constraint firstAttribute="height" constant="4" id="Liq-oG-DQk"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zD-U0-NXu">
+                    <rect key="frame" x="16" y="36" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="8NM-2z-BIx"/>
+                        <constraint firstAttribute="height" constant="24" id="ui5-Ah-G0f"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="arrow"/>
+                    <connections>
+                        <action selector="goBack:" destination="-1" eventType="touchUpInside" id="EKH-Xf-aa7"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to use?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apN-8F-Tz1">
+                    <rect key="frame" x="146.66666666666666" y="38" width="100" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="78v-q9-lKx"/>
+                        <constraint firstAttribute="height" constant="20" id="ln7-6G-ZBm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZ4-HS-SGU">
+                    <rect key="frame" x="16" y="149" width="361" height="114"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="114" id="jEk-3y-XFx"/>
+                    </constraints>
+                    <string key="text">First decide which training teams. Do you want to use whistle and how will you transmit these commands to your cat. For example, you may want your cat to sit down when it hears one short whistle, or come up when it hears three short whistles. It's best to start by pairing the whistle with one command at a time to avoid confusion.</string>
+                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="7" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0K-96-miL">
+                    <rect key="frame" x="16" y="273" width="361" height="133"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="133" id="zkw-JR-4ba"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33N-gp-0Yz">
+                    <rect key="frame" x="16" y="416" width="361" height="114"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="114" id="EfS-6V-gPA"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="114" id="gCs-1N-Zjs"/>
+                        <constraint firstAttribute="height" constant="114" id="oif-0O-Np5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="4zD-U0-NXu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="0G9-SD-ib6"/>
+                <constraint firstItem="UZ4-HS-SGU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="3IG-z7-wF8"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="33N-gp-0Yz" secondAttribute="trailing" constant="16" id="8GY-jd-UF7"/>
+                <constraint firstItem="33N-gp-0Yz" firstAttribute="top" secondItem="r0K-96-miL" secondAttribute="bottom" constant="10" id="8Gc-uC-Eqe"/>
+                <constraint firstItem="apN-8F-Tz1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Gij-vq-DOV"/>
+                <constraint firstItem="6Fo-H1-eqk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Juq-1O-jv8"/>
+                <constraint firstItem="33N-gp-0Yz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="KiU-9N-ZgM"/>
+                <constraint firstItem="UZ4-HS-SGU" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="90" id="bhz-8h-iYE"/>
+                <constraint firstItem="r0K-96-miL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="cad-ku-Y8s"/>
+                <constraint firstItem="apN-8F-Tz1" firstAttribute="top" secondItem="6Fo-H1-eqk" secondAttribute="bottom" constant="26" id="hfm-Hy-X7E"/>
+                <constraint firstItem="6Fo-H1-eqk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hyo-Dh-XHo"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="r0K-96-miL" secondAttribute="trailing" constant="16" id="mp8-sf-TuO"/>
+                <constraint firstItem="4zD-U0-NXu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="36" id="orC-pA-1En"/>
+                <constraint firstItem="r0K-96-miL" firstAttribute="top" secondItem="UZ4-HS-SGU" secondAttribute="bottom" constant="10" id="wVG-9U-haT"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="UZ4-HS-SGU" secondAttribute="trailing" constant="16" id="ygm-XM-ufj"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="60" y="-12"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="arrow" width="24" height="24"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
