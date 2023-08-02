@@ -62,6 +62,8 @@
 		B297410E2A7A9A0000DE1785 /* sound16.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B29740F92A7A9A0000DE1785 /* sound16.m4a */; };
 		B29741102A7AD26500DE1785 /* OnbordingBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B297410F2A7AD26500DE1785 /* OnbordingBaseController.swift */; };
 		B29741122A7AD29300DE1785 /* OnbordingBaseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B29741112A7AD29300DE1785 /* OnbordingBaseController.xib */; };
+		B297411E2A7AF29300DE1785 /* OvalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B297411D2A7AF29300DE1785 /* OvalView.swift */; };
+		B29741202A7AF2B600DE1785 /* OvalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B297411F2A7AF2B600DE1785 /* OvalView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +124,8 @@
 		B29740F92A7A9A0000DE1785 /* sound16.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound16.m4a; sourceTree = "<group>"; };
 		B297410F2A7AD26500DE1785 /* OnbordingBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbordingBaseController.swift; sourceTree = "<group>"; };
 		B29741112A7AD29300DE1785 /* OnbordingBaseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnbordingBaseController.xib; sourceTree = "<group>"; };
+		B297411D2A7AF29300DE1785 /* OvalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvalView.swift; sourceTree = "<group>"; };
+		B297411F2A7AF2B600DE1785 /* OvalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OvalView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,9 +199,7 @@
 		B215B8AE2A79005A0064B483 /* Onbording */ = {
 			isa = PBXGroup;
 			children = (
-				B29740C02A799B1C00DE1785 /* OnbodingPageViewController.swift */,
-				B297410F2A7AD26500DE1785 /* OnbordingBaseController.swift */,
-				B29741112A7AD29300DE1785 /* OnbordingBaseController.xib */,
+				B29741132A7ADD3400DE1785 /* BaseView */,
 			);
 			path = Onbording;
 			sourceTree = "<group>";
@@ -304,6 +306,7 @@
 		B29740CF2A7A4E2500DE1785 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				B297411C2A7AF27200DE1785 /* OvalView */,
 				B29740D52A7A533800DE1785 /* EmotionView */,
 				B29740D02A7A4E2F00DE1785 /* ShadowView */,
 			);
@@ -364,6 +367,25 @@
 				B29740E32A7A7AB500DE1785 /* VoiceViewController.xib */,
 			);
 			path = VoiceViewController;
+			sourceTree = "<group>";
+		};
+		B29741132A7ADD3400DE1785 /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				B29740C02A799B1C00DE1785 /* OnbodingPageViewController.swift */,
+				B297410F2A7AD26500DE1785 /* OnbordingBaseController.swift */,
+				B29741112A7AD29300DE1785 /* OnbordingBaseController.xib */,
+			);
+			path = BaseView;
+			sourceTree = "<group>";
+		};
+		B297411C2A7AF27200DE1785 /* OvalView */ = {
+			isa = PBXGroup;
+			children = (
+				B297411D2A7AF29300DE1785 /* OvalView.swift */,
+				B297411F2A7AF2B600DE1785 /* OvalView.xib */,
+			);
+			path = OvalView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,6 +462,7 @@
 				B29740D42A7A4F1500DE1785 /* ShadowView.xib in Resources */,
 				B29740FC2A7A9A0000DE1785 /* sound19.m4a in Resources */,
 				B29740FB2A7A9A0000DE1785 /* sound14.m4a in Resources */,
+				B29741202A7AF2B600DE1785 /* OvalView.xib in Resources */,
 				B29741092A7A9A0000DE1785 /* sound6.m4a in Resources */,
 				B297410E2A7A9A0000DE1785 /* sound16.m4a in Resources */,
 				B29740B92A798A5D00DE1785 /* AVArela.ttf in Resources */,
@@ -476,6 +499,7 @@
 				B215B8EA2A795F3F0064B483 /* UIView+Ext.swift in Sources */,
 				B215B8D82A793FFB0064B483 /* DirectionViewController.swift in Sources */,
 				B215B8CD2A7929800064B483 /* EmotionsViewController.swift in Sources */,
+				B297411E2A7AF29300DE1785 /* OvalView.swift in Sources */,
 				B215B8B42A7900DE0064B483 /* UIColor+Ext.swift in Sources */,
 				B215B8CF2A7929EA0064B483 /* NotesViewController.swift in Sources */,
 				B215B8982A78FF290064B483 /* AppDelegate.swift in Sources */,
