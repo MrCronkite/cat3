@@ -45,7 +45,7 @@ final class OnbodingPageViewController: UIViewController, UIPageViewControllerDa
     func viewControllerAtIndex(_ index: Int) -> UIViewController? {
         if index >= 0 && index < texts.count {
             let contentViewController = UIViewController()
-            
+            contentViewController.view.backgroundColor = .white
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 100))
             label.text = texts[index]
             label.textAlignment = .center

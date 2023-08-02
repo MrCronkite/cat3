@@ -60,6 +60,8 @@
 		B297410C2A7A9A0000DE1785 /* sound4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B29740F72A7A9A0000DE1785 /* sound4.m4a */; };
 		B297410D2A7A9A0000DE1785 /* sound18.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B29740F82A7A9A0000DE1785 /* sound18.m4a */; };
 		B297410E2A7A9A0000DE1785 /* sound16.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B29740F92A7A9A0000DE1785 /* sound16.m4a */; };
+		B29741102A7AD26500DE1785 /* OnbordingBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B297410F2A7AD26500DE1785 /* OnbordingBaseController.swift */; };
+		B29741122A7AD29300DE1785 /* OnbordingBaseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B29741112A7AD29300DE1785 /* OnbordingBaseController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +120,8 @@
 		B29740F72A7A9A0000DE1785 /* sound4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound4.m4a; sourceTree = "<group>"; };
 		B29740F82A7A9A0000DE1785 /* sound18.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound18.m4a; sourceTree = "<group>"; };
 		B29740F92A7A9A0000DE1785 /* sound16.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound16.m4a; sourceTree = "<group>"; };
+		B297410F2A7AD26500DE1785 /* OnbordingBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbordingBaseController.swift; sourceTree = "<group>"; };
+		B29741112A7AD29300DE1785 /* OnbordingBaseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnbordingBaseController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				B29740C02A799B1C00DE1785 /* OnbodingPageViewController.swift */,
+				B297410F2A7AD26500DE1785 /* OnbordingBaseController.swift */,
+				B29741112A7AD29300DE1785 /* OnbordingBaseController.xib */,
 			);
 			path = Onbording;
 			sourceTree = "<group>";
@@ -441,6 +447,7 @@
 				B29741022A7A9A0000DE1785 /* sound7.m4a in Resources */,
 				B29741042A7A9A0000DE1785 /* sound5.m4a in Resources */,
 				B297410B2A7A9A0000DE1785 /* sound1.m4a in Resources */,
+				B29741122A7AD29300DE1785 /* OnbordingBaseController.xib in Resources */,
 				B215B8A12A78FF2C0064B483 /* Assets.xcassets in Resources */,
 				B215B8D62A7937ED0064B483 /* WhistleViewController.xib in Resources */,
 				B29741082A7A9A0000DE1785 /* sound3.m4a in Resources */,
@@ -477,6 +484,7 @@
 				B29740E02A7A7A1D00DE1785 /* VoiceViewController.swift in Sources */,
 				B215B89A2A78FF290064B483 /* SceneDelegate.swift in Sources */,
 				B215B8D12A792A4E0064B483 /* WhistleViewController.swift in Sources */,
+				B29741102A7AD26500DE1785 /* OnbordingBaseController.swift in Sources */,
 				B29740C12A799B1C00DE1785 /* OnbodingPageViewController.swift in Sources */,
 				B29740C92A7A42EA00DE1785 /* NavBarView.swift in Sources */,
 				B29740DE2A7A633C00DE1785 /* ViewCollectionCell.swift in Sources */,

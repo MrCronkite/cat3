@@ -55,7 +55,7 @@ extension EmotionsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ViewCollectionCell", for: indexPath) as! ViewCollectionCell
         counter += 1
-        cell.addSong(songNum: counter)
+        cell.setupCell(index: counter)
         return cell
     }
 }

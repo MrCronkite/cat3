@@ -23,12 +23,11 @@ final class ViewCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addSong(songNum: Int) {
-        if songNum <= 21 {
-            print(songNum)
-            viewContent.lableText.text = titles[songNum]
-            viewContent.imageCatView.image = UIImage(named: String(songNum))
-            viewContent.setupAV(valueSong: songNum)
+    func setupCell(index: Int) {
+        if index <= 21 {
+            viewContent.lableText.text = titles[index]
+            viewContent.imageCatView.image = UIImage(named: String(index))
+            viewContent.setupAV(valueSong: index)
         }
     }
 }
