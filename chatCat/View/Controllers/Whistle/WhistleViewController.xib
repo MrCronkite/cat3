@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WhistleViewController" customModule="chatCat" customModuleProvider="target">
             <connections>
                 <outlet property="howToUseButton" destination="qdA-vY-67G" id="eY1-2v-T7E"/>
+                <outlet property="navBar" destination="BvV-bn-YAL" id="EzF-bp-Tiq"/>
                 <outlet property="noiseTitle" destination="KQZ-Q8-Ivz" id="ej8-WC-bq0"/>
                 <outlet property="sliderNoise" destination="oM5-YQ-4Rn" id="bf1-NK-gON"/>
                 <outlet property="view" destination="iN0-l3-epB" id="5iB-SA-pTc"/>

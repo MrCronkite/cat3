@@ -84,6 +84,7 @@ extension NotesViewController {
         navBarView.configureLabel(title: "Voice notes")
         navigationController?.navigationBar.isHidden = true
         
+        navBarView.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.noIntrinsicMetric
@@ -109,5 +110,12 @@ extension NotesViewController: UITableViewDataSource {
 extension NotesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         72
+    }
+}
+
+extension NotesViewController: NavBarViewDelegate {
+    func showVC() {
+        let vc = SettingsViewController()
+        show(vc, sender: nil)
     }
 }

@@ -171,7 +171,6 @@ extension ChatViewController {
 
 extension ChatViewController: NavBarViewDelegate {
     func showVC() {
-        print("hello")
         let vc = SettingsViewController()
         show(vc, sender: nil)
     }

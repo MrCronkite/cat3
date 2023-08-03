@@ -8,28 +8,52 @@
 import UIKit
 
 class CustomPageControl: UIPageControl {
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        updateDotsAppearance()
-    }
-    
-    private func updateDotsAppearance() {
-        let spacing: CGFloat = 8.0 // Расстояние между точками
-        let diameter: CGFloat = 10.0 // Размер обычной точки
-        let activeDiameter: CGFloat = 20.0 // Размер активной точки
-        
-        for (index, subview) in subviews.enumerated() {
-            let size = (index == currentPage) ? CGSize(width: activeDiameter, height: diameter) : CGSize(width: diameter, height: diameter)
-            subview.frame.size = size
-            subview.layer.cornerRadius = size.height / 2
-            
-            if index == currentPage {
-                let xOffset = (diameter + spacing) * CGFloat(index) + (diameter - activeDiameter) / 2
-                subview.frame.origin.x = xOffset
-            }
+
+    private var activeDotSize: CGSize = CGSize(width: 16, height: 16)
+    private var inactiveDotSize: CGSize = CGSize(width: 8, height: 8)
+    private var spacing: CGFloat = 12
+
+    override var numberOfPages: Int {
+        didSet {
+            numberOfPages = 3
         }
     }
+
+    override var currentPage: Int {
+        didSet {
+            currentPage = 0
+        }
+    }
+
+    override func draw(_ rect: CGRect) {
+        guard numberOfPages > 0 else { return }
+
+        let totalWidth = CGFloat(numberOfPages - 1) * spacing + CGFloat(numberOfPages) * activeDotSize.width
+        var x = (bounds.width - totalWidth) / 2
+
+        let y = (bounds.height - activeDotSize.height) / 2
+
+        let dotRadius = activeDotSize.width / 2
+        let dotRect = CGRect(x: x, y: y, width: activeDotSize.width, height: activeDotSize.height)
+
+        for i in 0..<numberOfPages {
+            let dotColor: UIColor = (i == currentPage) ? UIColor.red : UIColor.lightGray
+
+            let dotPath = UIBezierPath(roundedRect: dotRect, cornerRadius: dotRadius)
+            dotColor.setFill()
+            dotPath.fill()
+
+            x += activeDotSize.width + spacing
+        }
+    }
+
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        let width = CGFloat(numberOfPages) * activeDotSize.width + CGFloat(numberOfPages - 1) * spacing
+        let height = max(activeDotSize.height, inactiveDotSize.height)
+
+        return CGSize(width: width, height: height)
+    }
 }
+
 
 

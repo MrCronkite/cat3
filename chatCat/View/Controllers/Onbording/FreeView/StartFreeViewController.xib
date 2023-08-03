@@ -14,7 +14,9 @@
                 <outlet property="imageView" destination="ytY-Hz-ZWq" id="kWW-1y-EKI"/>
                 <outlet property="privacyLabel" destination="JIF-cs-XJl" id="Va3-om-cfT"/>
                 <outlet property="restoreLabel" destination="BkB-kB-6CY" id="Vhf-pW-x7O"/>
+                <outlet property="subtitle" destination="WdT-1Z-ary" id="M0j-Vx-jE0"/>
                 <outlet property="termUsLabel" destination="hpO-z5-CoH" id="gAa-BF-y39"/>
+                <outlet property="titleLabel" destination="Uta-x3-oO3" id="dc0-Js-P93"/>
                 <outlet property="view" destination="iN0-l3-epB" id="5cn-hb-4wh"/>
             </connections>
         </placeholder>

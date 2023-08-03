@@ -18,9 +18,9 @@ final class OnbordingPageViewController: UIViewController {
         let view = UIPageControl()
         view.numberOfPages = 3
         view.currentPage = 0
-        view.pageIndicatorTintColor = R.Colors.viewInactive
         view.currentPageIndicatorTintColor = R.Colors.viewActive
-        return view
+        view.pageIndicatorTintColor = R.Colors.viewInactive
+        return view 
     }()
     
     let nextButton: UIButton = {

@@ -22,12 +22,13 @@ final class DirectionViewController: UIViewController {
     }
     
     @IBAction func goBack(_ sender: Any) {
-        
+        dismiss(animated: true)
     }
 }
 
 extension DirectionViewController {
     private func setupView() {
+        navigationController?.navigationBar.isHidden = true
         titleLable.textColor = R.Colors.viewActive
         
         directionLable.text = R.Strings.Whistle.textDirection

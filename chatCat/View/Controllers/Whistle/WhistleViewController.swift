@@ -10,9 +10,9 @@ import UIKit
 final class WhistleViewController: UIViewController {
     
     @IBOutlet weak var howToUseButton: UIButton!
-    
     @IBOutlet weak var noiseTitle: UILabel!
     @IBOutlet weak var sliderNoise: UISlider!
+    @IBOutlet weak var navBar: NavBarView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +22,7 @@ final class WhistleViewController: UIViewController {
     }
     @IBAction func showDirection(_ sender: Any) {
         let vc = DirectionViewController()
+        vc.modalPresentationStyle = .popover
         present(vc, animated: true)
     }
     
@@ -40,6 +41,7 @@ extension WhistleViewController {
         noiseTitle.textColor = R.Colors.viewActive
         sliderNoise.minimumTrackTintColor = R.Colors.viewActive
         navigationController?.navigationBar.isHidden = true
+        navBar.delegate = self
     }
     
     func updateLabelValue(value: Float) {
@@ -47,4 +49,13 @@ extension WhistleViewController {
         
            noiseTitle.text = "\(formattedValue) HZ"
        }
+}
+
+extension WhistleViewController: NavBarViewDelegate {
+    func showVC() {
+        let vc = SettingsViewController()
+        show(vc, sender: nil)
+    }
+    
+    
 }

@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmotionsViewController" customModule="chatCat" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="ybR-bk-ZBX" id="ilE-sd-QIx"/>
+                <outlet property="navBar" destination="1NP-pi-NIq" id="xIY-D0-G6x"/>
                 <outlet property="view" destination="iN0-l3-epB" id="k0l-9F-aHh"/>
             </connections>
         </placeholder>
@@ -34,7 +35,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ybR-bk-ZBX">
-                    <rect key="frame" x="16" y="121" width="361" height="696"/>
+                    <rect key="frame" x="10" y="121" width="373" height="696"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="16h-2L-IUp">
                         <size key="itemSize" width="128" height="128"/>
@@ -47,7 +48,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="ybR-bk-ZBX" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-16" id="4LN-be-IU2"/>
+                <constraint firstItem="ybR-bk-ZBX" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-10" id="4LN-be-IU2"/>
                 <constraint firstItem="1NP-pi-NIq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="FV4-dX-p4P"/>
                 <constraint firstItem="1NP-pi-NIq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="HBs-fs-u6U"/>
                 <constraint firstItem="ybR-bk-ZBX" firstAttribute="top" secondItem="1NP-pi-NIq" secondAttribute="bottom" id="HSw-50-GtN"/>
@@ -57,7 +58,7 @@
                 <constraint firstItem="hGN-WX-YEo" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="l3O-dB-FTs"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hGN-WX-YEo" secondAttribute="trailing" id="leJ-EB-J2v"/>
                 <constraint firstItem="1NP-pi-NIq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="pz1-uu-Lif"/>
-                <constraint firstItem="ybR-bk-ZBX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="vCN-gw-Gfd"/>
+                <constraint firstItem="ybR-bk-ZBX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="vCN-gw-Gfd"/>
             </constraints>
             <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
         </view>
