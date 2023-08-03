@@ -12,6 +12,7 @@ final class ChatViewController: UIViewController {
     let animationLayer1 = CALayer()
     let animationLayer = CALayer()
     
+    @IBOutlet weak var navBarView: NavBarView!
     @IBOutlet weak var playButtonCat: UIButton!
     @IBOutlet weak var catView: UIView!
     @IBOutlet weak var meView: UIView!
@@ -45,6 +46,7 @@ final class ChatViewController: UIViewController {
 
 extension ChatViewController {
     private func setupView() {
+        navBarView.delegate = self
         navigationController?.navigationBar.isHidden = true
         
         catView.backgroundColor = R.Colors.viewInactive
@@ -164,5 +166,13 @@ extension ChatViewController {
             self.catView.backgroundColor = R.Colors.viewActive
             self.meView.backgroundColor = R.Colors.viewInactive
         }
+    }
+}
+
+extension ChatViewController: NavBarViewDelegate {
+    func showVC() {
+        print("hello")
+        let vc = SettingsViewController()
+        show(vc, sender: nil)
     }
 }

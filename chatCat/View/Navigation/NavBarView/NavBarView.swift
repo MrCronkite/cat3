@@ -7,10 +7,17 @@
 
 import UIKit
 
+
+protocol NavBarViewDelegate: AnyObject {
+    func showVC()
+}
+
 @IBDesignable
 final class NavBarView: UIView {
     
     @IBOutlet weak var titleText: UILabel!
+    
+    weak var delegate: NavBarViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,8 +34,7 @@ final class NavBarView: UIView {
     }
     
     @IBAction func showDirection(_ sender: Any) {
-        let vc = ChatViewController()
-        vc.showSetting(view: vc)
+        delegate?.showVC()
     }
 }
 
