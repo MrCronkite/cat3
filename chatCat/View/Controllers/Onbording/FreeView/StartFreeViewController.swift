@@ -16,6 +16,9 @@ final class StartFreeViewController: UIViewController {
     @IBOutlet weak var privacyLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitle: UILabel!
+    @IBOutlet weak var textPRO: UILabel!
+    @IBOutlet weak var firstDaysText: UILabel!
+    @IBOutlet weak var subtitle2: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,12 +55,23 @@ extension StartFreeViewController {
         
         titleLabel.attributedText = attributeText
         
-        let subtitleText = "Upgrade to PRO to get all the benefits"
-        let subtextAttribute = NSMutableAttributedString(string: subtitleText)
+        textPRO.backgroundColor = R.Colors.viewActive
+        textPRO.layer.cornerRadius = 8
+        textPRO.layer.masksToBounds = true
         
-        subtextAttribute.addAttribute(.font, value: UIFont.systemFont(ofSize: 18), range: NSRange(location: 2, length: 3))
+        let firstText = "First 3 days free,"
+        let attributeFirstText = NSMutableAttributedString(string: firstText)
         
-        subtitle.attributedText = subtextAttribute
+        attributeFirstText.addAttribute(.foregroundColor, value: R.Colors.viewActive, range: NSRange(location: 0, length: 17))
+        
+        firstDaysText.attributedText = attributeFirstText
+        
+        let secondText = "then 5.99$ per week. cacel at anytime."
+        let attributeSecondText = NSMutableAttributedString(string: secondText)
+        
+        attributeSecondText.addAttribute(.foregroundColor, value: R.Colors.viewActive, range: NSRange(location: 5, length: 16))
+        
+        subtitle2.attributedText = attributeSecondText
     }
     
 }

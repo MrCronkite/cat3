@@ -11,11 +11,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StartFreeViewController" customModule="chatCat" customModuleProvider="target">
             <connections>
                 <outlet property="buttonGetFree" destination="3a4-Q9-5J4" id="wsi-tP-SsT"/>
+                <outlet property="firstDaysText" destination="E3M-Oc-2FT" id="Z3M-QJ-pML"/>
                 <outlet property="imageView" destination="ytY-Hz-ZWq" id="kWW-1y-EKI"/>
                 <outlet property="privacyLabel" destination="JIF-cs-XJl" id="Va3-om-cfT"/>
                 <outlet property="restoreLabel" destination="BkB-kB-6CY" id="Vhf-pW-x7O"/>
                 <outlet property="subtitle" destination="WdT-1Z-ary" id="M0j-Vx-jE0"/>
+                <outlet property="subtitle2" destination="XSk-go-nSz" id="vjG-VK-qIU"/>
                 <outlet property="termUsLabel" destination="hpO-z5-CoH" id="gAa-BF-y39"/>
+                <outlet property="textPRO" destination="geY-FD-2Fx" id="qq0-gf-E7J"/>
                 <outlet property="titleLabel" destination="Uta-x3-oO3" id="dc0-Js-P93"/>
                 <outlet property="view" destination="iN0-l3-epB" id="5cn-hb-4wh"/>
             </connections>
@@ -47,13 +50,13 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upgrade to PRO to get all the benefits" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdT-1Z-ary">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upgrade to  PRO  to get all the benefits" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdT-1Z-ary">
                     <rect key="frame" x="101.66666666666669" y="426" width="190" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="JC5-LD-Dgz"/>
                         <constraint firstAttribute="width" constant="190" id="feR-Ix-vY4"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -296,12 +299,24 @@
                         <constraint firstAttribute="width" constant="312" id="cOA-k3-QdW"/>
                     </constraints>
                 </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PRO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geY-FD-2Fx">
+                    <rect key="frame" x="197" y="431" width="39" height="21"/>
+                    <color key="backgroundColor" red="0.31079665280000002" green="0.2258482396" blue="0.86078917980000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="l38-uB-2AU"/>
+                        <constraint firstAttribute="width" constant="39" id="xNp-IH-h4L"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="ytY-Hz-ZWq" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="17b-Ec-uM1"/>
                 <constraint firstItem="3a4-Q9-5J4" firstAttribute="top" secondItem="XSk-go-nSz" secondAttribute="bottom" constant="12" id="3rl-ll-faY"/>
+                <constraint firstItem="geY-FD-2Fx" firstAttribute="top" secondItem="Uta-x3-oO3" secondAttribute="bottom" constant="19" id="7a5-cT-kXf"/>
                 <constraint firstItem="Dpp-JF-uug" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="GD5-zS-YhG"/>
                 <constraint firstItem="ytY-Hz-ZWq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="H0f-Sg-qdH"/>
                 <constraint firstItem="d43-rp-hu1" firstAttribute="top" secondItem="3a4-Q9-5J4" secondAttribute="bottom" constant="16" id="Io0-on-qvE"/>
@@ -312,6 +327,7 @@
                 <constraint firstItem="XIa-hb-D3B" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PkY-Po-gGj"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="aXr-05-Q4e" secondAttribute="trailing" id="RFF-5O-fvO"/>
                 <constraint firstItem="WdT-1Z-ary" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="TcK-wV-4aW"/>
+                <constraint firstItem="geY-FD-2Fx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="20" id="UkS-2q-qOK"/>
                 <constraint firstItem="XSk-go-nSz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Wbd-fp-Vy7"/>
                 <constraint firstItem="XIa-hb-D3B" firstAttribute="top" secondItem="d43-rp-hu1" secondAttribute="bottom" constant="10" id="WuZ-nQ-HPE"/>
                 <constraint firstItem="E3M-Oc-2FT" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XG8-sQ-QdB"/>
