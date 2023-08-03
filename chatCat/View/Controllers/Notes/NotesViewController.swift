@@ -9,6 +9,8 @@ import UIKit
 
 final class NotesViewController: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     let animationLayer1 = CALayer()
     let animationLayer = CALayer()
     
@@ -26,12 +28,9 @@ final class NotesViewController: UIViewController {
     
     @IBAction func recordingVoice(_ sender: Any) {
         
-        
     }
     
     @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
-        
-        
         
            if gesture.state == .began {
                animationLayer.frame = playButton.frame
@@ -75,7 +74,7 @@ final class NotesViewController: UIViewController {
                navigationController?.pushViewController(vc, animated: true)
                
            }
-       }
+    }
 }
 
 extension NotesViewController {
@@ -85,7 +84,30 @@ extension NotesViewController {
         navBarView.configureLabel(title: "Voice notes")
         navigationController?.navigationBar.isHidden = true
         
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.rowHeight = UITableView.noIntrinsicMetric
+        tableView.separatorStyle = .none
+        tableView.register(CustomViewCell.self, forCellReuseIdentifier: "\(CustomViewCell.self)")
+        
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         playButton.addGestureRecognizer(longPressGesture)
+    }
+}
+
+extension NotesViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(CustomViewCell.self)", for: indexPath) as? CustomViewCell else { return UITableViewCell() }
+        return cell
+    }
+}
+
+extension NotesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        72
     }
 }

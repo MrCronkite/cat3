@@ -65,18 +65,38 @@
                         <action selector="showDirection:" destination="-1" eventType="touchUpInside" id="3V2-OS-3SI"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BvV-bn-YAL" customClass="NavBarView" customModule="chatCat" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="59" width="393" height="62"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="62" id="a7B-Rf-K4W"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4jN-e1-O3L" customClass="ShadowView" customModule="chatCat" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="817" width="393" height="1"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="QPE-qH-BW5"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="BvV-bn-YAL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0c1-ng-F2g"/>
                 <constraint firstItem="Ds5-Rd-Bf6" firstAttribute="top" secondItem="qdA-vY-67G" secondAttribute="bottom" constant="145" id="5Th-bn-OKs"/>
                 <constraint firstItem="oM5-YQ-4Rn" firstAttribute="top" secondItem="KQZ-Q8-Ivz" secondAttribute="bottom" constant="40" id="DT9-Ny-I3h"/>
                 <constraint firstItem="KQZ-Q8-Ivz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FAG-af-eJp"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4jN-e1-O3L" secondAttribute="trailing" id="Joi-zk-16J"/>
+                <constraint firstItem="4jN-e1-O3L" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Nve-Z3-x6B"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="BvV-bn-YAL" secondAttribute="trailing" id="T7W-3w-mEc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="4jN-e1-O3L" secondAttribute="bottom" id="UNU-Ro-jU9"/>
                 <constraint firstItem="KQZ-Q8-Ivz" firstAttribute="top" secondItem="Ds5-Rd-Bf6" secondAttribute="bottom" constant="40" id="XEy-Rn-dXs"/>
                 <constraint firstItem="oM5-YQ-4Rn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="bj7-7X-CMf"/>
                 <constraint firstItem="Ds5-Rd-Bf6" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cdz-On-XEJ"/>
                 <constraint firstItem="Ds5-Rd-Bf6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="gQE-76-zFd"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="oM5-YQ-4Rn" secondAttribute="trailing" constant="24" id="h6p-yM-HoV"/>
+                <constraint firstItem="BvV-bn-YAL" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="nN8-0r-IEG"/>
                 <constraint firstItem="qdA-vY-67G" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pun-tF-epI"/>
             </constraints>
             <point key="canvasLocation" x="58.778625954198468" y="-11.267605633802818"/>

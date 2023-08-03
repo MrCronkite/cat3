@@ -81,6 +81,11 @@ enum R {
         enum Chat {
             static let catImg = UIImage(named: "catImage")
             static let meImg = UIImage(named: "meImage")
+            static let pauseImg = UIImage(named: "stopPlay")
+            static let micro = UIImage(named: "micro")
+            static let pauseImg130 = UIImage(named: "pause130")
+            static let micro130 = UIImage(named: "play130")
+            static let reboot = UIImage(named: "reboot")
         }
     }
     

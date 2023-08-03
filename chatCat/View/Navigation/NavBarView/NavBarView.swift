@@ -27,7 +27,8 @@ final class NavBarView: UIView {
     }
     
     @IBAction func showDirection(_ sender: Any) {
-        //let vc = SettingsViewController()
+        let vc = ChatViewController()
+        vc.showSetting(view: vc)
     }
 }
 

@@ -9,15 +9,19 @@ import UIKit
 
 final class OnbordingBaseController: UIViewController {
     
-    @IBOutlet weak var imageView: UIImageView?
-    @IBOutlet weak var lableText: UILabel?
+    @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var lableText: UILabel!
+    @IBOutlet weak var subtitleText: UILabel!
     
-    
-    init(image: UIImage? = nil, text: String? = nil){
+    init(image: UIImage? = nil, text: String? = nil, subtitle: String? = nil){
         super.init(nibName: nil, bundle: nil)
-        view.backgroundColor = .gray
+        view.backgroundColor = .white
+        bgView.backgroundColor = R.Colors.bgColor
+        
         self.imageView?.image = image
         self.lableText?.text = text
+        self.subtitleText.text = subtitle
         
     }
     

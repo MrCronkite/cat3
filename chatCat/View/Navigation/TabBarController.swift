@@ -34,7 +34,6 @@ final class TabBarController: UITabBarController {
     private func configure() {
         tabBar.tintColor = R.Colors.btnActive
         tabBar.barTintColor = R.Colors.btnActive
-        //tabBar.layer.borderWidth = 0.2
         tabBar.layer.borderColor = UIColor.black.cgColor
         tabBar.layer.masksToBounds = true
         

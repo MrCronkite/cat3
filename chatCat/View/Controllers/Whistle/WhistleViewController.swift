@@ -36,10 +36,10 @@ final class WhistleViewController: UIViewController {
 
 extension WhistleViewController {
     private func setupView() {
-        //howToUseButton.setTitleColor(R.Colors.viewActive, for: .normal)
         howToUseButton.tintColor = R.Colors.viewActive
         noiseTitle.textColor = R.Colors.viewActive
         sliderNoise.minimumTrackTintColor = R.Colors.viewActive
+        navigationController?.navigationBar.isHidden = true
     }
     
     func updateLabelValue(value: Float) {

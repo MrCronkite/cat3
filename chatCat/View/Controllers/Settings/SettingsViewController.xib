@@ -33,6 +33,9 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="arrow"/>
+                    <connections>
+                        <action selector="goToRoot:" destination="-1" eventType="touchUpInside" id="UXt-t2-RCf"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Imh-uR-wW6">
                     <rect key="frame" x="163.66666666666666" y="80" width="66" height="20"/>
@@ -136,6 +139,9 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="101" id="f2e-fE-aML"/>
+                    </constraints>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2kS-Zi-CnJ">
                     <rect key="frame" x="16" y="253" width="361" height="52"/>
@@ -239,7 +245,6 @@
                 <constraint firstItem="3UF-PN-YLp" firstAttribute="top" secondItem="2kS-Zi-CnJ" secondAttribute="bottom" constant="20" id="a8S-ua-LKv"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="clv-Ld-haF" secondAttribute="trailing" constant="16" id="bhm-7M-Y8w"/>
                 <constraint firstItem="sY3-gL-4xF" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="19" id="cEv-qu-7Xz"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="clv-Ld-haF" secondAttribute="bottom" constant="585" id="eq9-eD-60S"/>
                 <constraint firstItem="clv-Ld-haF" firstAttribute="top" secondItem="sY3-gL-4xF" secondAttribute="bottom" constant="30" id="gZl-ht-KgK"/>
                 <constraint firstItem="clv-Ld-haF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="onr-EE-JHT"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="3UF-PN-YLp" secondAttribute="trailing" constant="16" id="q7E-fv-AV2"/>

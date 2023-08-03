@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StickerView" customModule="chatCat" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="H6Q-99-m0h">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgStick" translatesAutoresizingMaskIntoConstraints="NO" id="cd4-hu-Qty">
+                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="TNm-Rx-PAw">
+                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="STT-bW-7Vt"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="STT-bW-7Vt" firstAttribute="bottom" secondItem="cd4-hu-Qty" secondAttribute="bottom" constant="-34" id="40L-SI-kH9"/>
+                <constraint firstItem="TNm-Rx-PAw" firstAttribute="top" secondItem="H6Q-99-m0h" secondAttribute="top" id="5QU-ac-Qsz"/>
+                <constraint firstItem="TNm-Rx-PAw" firstAttribute="trailing" secondItem="STT-bW-7Vt" secondAttribute="trailing" id="JqT-T6-yAW"/>
+                <constraint firstAttribute="trailing" secondItem="cd4-hu-Qty" secondAttribute="trailing" id="NlB-v1-DyP"/>
+                <constraint firstAttribute="bottom" secondItem="TNm-Rx-PAw" secondAttribute="bottom" id="TL9-lu-QsP"/>
+                <constraint firstItem="TNm-Rx-PAw" firstAttribute="leading" secondItem="STT-bW-7Vt" secondAttribute="leading" id="WTV-Xb-ARY"/>
+                <constraint firstItem="cd4-hu-Qty" firstAttribute="top" secondItem="H6Q-99-m0h" secondAttribute="top" id="iYX-Qu-2yr"/>
+                <constraint firstItem="cd4-hu-Qty" firstAttribute="leading" secondItem="H6Q-99-m0h" secondAttribute="leading" id="lQp-Hm-ZGi"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="77.862595419847324" y="-86.619718309859152"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="1" width="72" height="70"/>
+        <image name="bgStick" width="176" height="173"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

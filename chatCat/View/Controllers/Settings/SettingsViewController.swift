@@ -24,6 +24,9 @@ final class SettingsViewController: UIViewController {
         setupView()
     }
     
+    @IBAction func goToRoot(_ sender: Any) {
+        navigationController?.popToRootViewController(animated: true)
+    }
 }
 
 extension SettingsViewController {
