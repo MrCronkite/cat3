@@ -7,8 +7,13 @@
 
 import UIKit
 
+protocol StartFreeViewControllerDelegate: AnyObject {
+    func showButton()
+}
+
 final class StartFreeViewController: UIViewController {
     
+    @IBOutlet weak var ovalView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var buttonGetFree: UIButton!
     @IBOutlet weak var termUsLabel: UILabel!
@@ -20,11 +25,31 @@ final class StartFreeViewController: UIViewController {
     @IBOutlet weak var firstDaysText: UILabel!
     @IBOutlet weak var subtitle2: UILabel!
     
+    weak var delegate: StartFreeViewControllerDelegate?
+
+    override func viewWillLayoutSubviews() {
+        drawOval()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTitleLabel()
         setupView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        delegate?.showButton()
+        self.buttonGetFree.isHidden = false
+        UIView.animate(withDuration: 0.7) {
+            self.buttonGetFree.backgroundColor = R.Colors.btnActive
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UIView.animate(withDuration: 0.7) {
+            self.buttonGetFree.backgroundColor = .white
+        }
     }
     
     @IBAction func getFreeTrial(_ sender: Any) {
@@ -39,7 +64,7 @@ extension StartFreeViewController {
         view.backgroundColor = .white
         imageView.backgroundColor = R.Colors.bgColor
         
-        buttonGetFree.layer.cornerRadius = 30
+        buttonGetFree.layer.cornerRadius = 25
         buttonGetFree.backgroundColor = R.Colors.btnActive
         
         termUsLabel.textColor = R.Colors.subtitle
@@ -74,5 +99,19 @@ extension StartFreeViewController {
         subtitle2.attributedText = attributeSecondText
     }
     
+    private func drawOval() {
+        let ovalPath = UIBezierPath()
+        let startPoint = CGPoint(x: ovalView.bounds.minX, y: ovalView.bounds.maxY)
+        let endPoint = CGPoint(x: view.frame.width, y: ovalView.bounds.maxY)
+        let controlPoint = CGPoint(x: ovalView.bounds.midX, y: ovalView.bounds.minY - ovalView.bounds.height)
+        ovalPath.move(to: startPoint)
+        ovalPath.addQuadCurve(to: endPoint, controlPoint: controlPoint)
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = ovalPath.cgPath
+        shapeLayer.fillColor = UIColor.white.cgColor
+        
+        ovalView.layer.addSublayer(shapeLayer)
+    }
 }
 

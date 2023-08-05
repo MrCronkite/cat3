@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 protocol NavBarViewDelegate: AnyObject {
     func showVC()
 }
@@ -43,6 +42,7 @@ extension NavBarView {
         guard let view = self.loadViewFromNib(nibName: "NavBarView") else { return }
         view.frame = self.bounds
         self.addSubview(view)
+        self.backgroundColor = .white
     }
     
     func configureLabel(title: String) {

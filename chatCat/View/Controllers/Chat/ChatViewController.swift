@@ -37,7 +37,7 @@ final class ChatViewController: UIViewController {
     }
     
     func showSetting(view: UIViewController) {
-        
+
         
         let vc1 = SettingsViewController()
         view.navigationController?.pushViewController(vc1, animated: true)
@@ -71,16 +71,24 @@ extension ChatViewController {
         textTranslate.borderStyle = .none
 
         playButtonCat.isHidden = true
+        let text = "Enter text to translate..."
+        let attributedText = NSAttributedString(string: text, attributes: [NSAttributedString.Key.foregroundColor : R.Colors.viewActive] )
+        textTranslate.attributedPlaceholder = attributedText
         
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressMe(_:)))
+        let longPressGesture = UILongPressGestureRecognizer(target: self,
+                                                            action: #selector(handleLongPressMe(_:)))
         playButton.addGestureRecognizer(longPressGesture)
         
-        let longPressGestureCat = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressCat(_:)))
+        let longPressGestureCat = UILongPressGestureRecognizer(target: self,
+                                                               action: #selector(handleLongPressCat(_:)))
         playButtonCat.addGestureRecognizer(longPressGestureCat)
         
-        let tapPressGestureMe = UITapGestureRecognizer(target: self, action: #selector(handleTapMe(_:)))
+        let tapPressGestureMe = UITapGestureRecognizer(target: self,
+                                                       action: #selector(handleTapMe(_:)))
         meView.addGestureRecognizer(tapPressGestureMe)
-        let tapPressGestureCat = UITapGestureRecognizer(target: self, action: #selector(handleTapCat(_:)))
+        
+        let tapPressGestureCat = UITapGestureRecognizer(target: self,
+                                                        action: #selector(handleTapCat(_:)))
         catView.addGestureRecognizer(tapPressGestureCat)
     }
     

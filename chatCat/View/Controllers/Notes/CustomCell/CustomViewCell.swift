@@ -31,6 +31,11 @@ extension CustomViewCell {
         guard let view = self.loadViewFromNib(nibName: "CustomViewCell") else { return }
         view.frame = self.bounds
         self.addSubview(view)
+        self.backgroundColor = .white
+        
+        title.textColor = R.Colors.blackColor
+        data.textColor = R.Colors.blackColor
+        title.textColor = R.Colors.blackColor
         
         bgView.layer.cornerRadius = 20
         bgView.backgroundColor = R.Colors.bgSettingd

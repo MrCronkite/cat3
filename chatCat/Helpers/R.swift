@@ -19,6 +19,7 @@ enum R {
         static let tintColor = UIColor(hex: "#DADADA")
         static let borderCircle = UIColor(hex: "#e4eafd")
         static let borderCircle1 = UIColor(hex: "#f0f4fe")
+        static let blackColor = UIColor(hex: "#181614")
     }
     
     enum Strings {
@@ -34,12 +35,10 @@ enum R {
         }
         
         enum Onboarding {
-            static let title1 = "Cat and human"
-            static let subtitle1 = "Simulation of human and cat speech and vice versa"
-            static let title2 = "Speech simulation"
-            static let subtitle2 = "Express any emotion to your cat"
-            static let title3 = "Have fun!"
-            static let subtitle3 = "Make friends with your pets"
+            static let textsImages: [String] = ["catAndMe1", "catAndMe2", "catAndMe3", "cats"]
+            static let texts: [String] = ["Cat and human", "Speech simulation", "Have fun!", "Enjoy all features"]
+            
+            static let subtitles: [String] = ["Simulation of human and cat speech and vice versa", "Express any emotion to your cat", "Make friends with your pets", ""]
         }
         
         enum Whistle {

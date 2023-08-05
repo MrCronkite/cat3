@@ -14,6 +14,7 @@ final class ViewCollectionCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         viewContent = EmotionView(frame: CGRect(x: 0, y: 0, width: 108, height: 117))
+        viewContent.lableText.textColor = .black
         viewContent.contentMode = .scaleAspectFit
         super.init(frame: frame)
         contentView.addSubview(viewContent)

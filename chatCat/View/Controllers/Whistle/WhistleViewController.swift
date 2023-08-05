@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 final class WhistleViewController: UIViewController {
     
@@ -45,10 +46,9 @@ extension WhistleViewController {
     }
     
     func updateLabelValue(value: Float) {
-           let formattedValue = String(format: "%.f", value)
-        
-           noiseTitle.text = "\(formattedValue) HZ"
-       }
+        let formattedValue = String(format: "%.f", value)
+        noiseTitle.text = "\(formattedValue) HZ"
+    }
 }
 
 extension WhistleViewController: NavBarViewDelegate {

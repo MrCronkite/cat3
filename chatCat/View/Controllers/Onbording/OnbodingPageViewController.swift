@@ -8,10 +8,7 @@
 import UIKit
 
 final class OnbordingPageViewController: UIViewController {
-    
-    var textsImages: [String] = ["catAndMe1", "catAndMe2", "catAndMe3", "cats"]
-    var texts: [String] = ["Cat and human", "Speech simulation", "Have fun!", "Enjoy all features"]
-    var subtitles: [String] = ["Simulation of human and cat speech and vice versa", "Express any emotion to your cat", "Make friends with your pets", ""]
+
     var currentIndex: Int = 0
     
     let pageControl: UIPageControl = {
@@ -20,7 +17,7 @@ final class OnbordingPageViewController: UIViewController {
         view.currentPage = 0
         view.currentPageIndicatorTintColor = R.Colors.viewActive
         view.pageIndicatorTintColor = R.Colors.viewInactive
-        return view 
+        return view
     }()
     
     let nextButton: UIButton = {
@@ -36,7 +33,7 @@ final class OnbordingPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .white
         
         setupPageViewController()
         setupView()
@@ -77,6 +74,7 @@ extension OnbordingPageViewController {
         }
         
         pageViewController.dataSource = self
+        pageViewController.delegate = self
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
         pageViewController.didMove(toParent: self)
@@ -84,8 +82,7 @@ extension OnbordingPageViewController {
     }
     
     @objc func nextButtonTapped() {
-        currentIndex = (currentIndex + 1) % texts.count
-        
+        currentIndex += 1
         pageControl.currentPage = currentIndex
         if let nextViewController = viewControllerAtIndex(currentIndex) {
             pageViewController.setViewControllers([nextViewController],
@@ -96,36 +93,79 @@ extension OnbordingPageViewController {
     }
 }
 
-extension OnbordingPageViewController: UIPageViewControllerDataSource {
+extension OnbordingPageViewController: StartFreeViewControllerDelegate {
+    func showButton() {
+        UIView.animate(withDuration: 0.5) {
+            self.pageControl.currentPageIndicatorTintColor = .white
+            self.pageControl.pageIndicatorTintColor = .white
+            self.nextButton.backgroundColor = .white
+            self.nextButton.isHidden = true
+            self.pageControl.isHidden = true
+        }
+        
+    }
+}
+
+extension OnbordingPageViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     func viewControllerAtIndex(_ index: Int) -> UIViewController? {
         if index >= 0 && index < 3 {
             pageControl.isHidden = false
             let contentViewController = OnbordingBaseController(
-                image: UIImage(named: textsImages[index]),
-                text: texts[index],
-                subtitle: subtitles[index])
+                image: UIImage(named: R.Strings.Onboarding.textsImages[index]),
+                text: R.Strings.Onboarding.texts[index],
+                subtitle: R.Strings.Onboarding.subtitles[index])
             return contentViewController
         }else {
             let vc = StartFreeViewController()
-            pageControl.isHidden = true
-            nextButton.isHidden = true
+            vc.delegate = self
             return vc
         }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if let index = texts.firstIndex(of: (viewController.view.subviews.first as? UILabel)?.text ?? "") {
-            let previousIndex = (index - 1 + texts.count) % texts.count
-            return viewControllerAtIndex(previousIndex)
+        if let index = R.Strings.Onboarding.subtitles.firstIndex(of: (viewController.view.subviews.last as? UILabel)?.text ?? "") {
+            let previousIndex = (index - 1 + R.Strings.Onboarding.subtitles.count) % R.Strings.Onboarding.subtitles.count
+            if previousIndex < 3 {
+                return viewControllerAtIndex(previousIndex)
+            }
+        } else if currentIndex == 3 {
+            return viewControllerAtIndex(2)
         }
         return nil
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if let index = texts.firstIndex(of: (viewController.view.subviews.first as? UILabel)?.text ?? "") {
-            let nextIndex = (index + 1) % texts.count
+        if let index = R.Strings.Onboarding.subtitles.firstIndex(of: (viewController.view.subviews.last as? UILabel)?.text ?? "") {
+            pageControl.currentPage = index
+            let nextIndex = (index + 1) % R.Strings.Onboarding.subtitles.count
             return viewControllerAtIndex(nextIndex)
+        } else if currentIndex == 3 {
+            return nil
         }
         return nil
     }
+    
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        return currentIndex
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        if let viewController = pendingViewControllers.first, let index = R.Strings.Onboarding.subtitles.firstIndex(of: (viewController.view.subviews.last as? UILabel)?.text ?? "") {
+            
+            currentIndex = index
+            pageControl.currentPage = currentIndex
+            
+            if index == 2 {
+                UIView.animate(withDuration: 0.5) {
+                    self.pageControl.currentPageIndicatorTintColor = R.Colors.viewActive
+                    self.pageControl.pageIndicatorTintColor = R.Colors.viewInactive
+                    self.nextButton.backgroundColor = R.Colors.btnActive
+                    self.nextButton.isHidden = false
+                    self.pageControl.isHidden = false
+                }
+            }
+        }
+    }
 }
+
+

@@ -69,8 +69,11 @@
 		B297410E2A7A9A0000DE1785 /* sound16.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B29740F92A7A9A0000DE1785 /* sound16.m4a */; };
 		B29741102A7AD26500DE1785 /* OnbordingBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B297410F2A7AD26500DE1785 /* OnbordingBaseController.swift */; };
 		B29741122A7AD29300DE1785 /* OnbordingBaseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B29741112A7AD29300DE1785 /* OnbordingBaseController.xib */; };
-		B297411E2A7AF29300DE1785 /* OvalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B297411D2A7AF29300DE1785 /* OvalView.swift */; };
-		B29741202A7AF2B600DE1785 /* OvalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B297411F2A7AF2B600DE1785 /* OvalView.xib */; };
+		B29C7E7E2A7D04F0007760A8 /* Voices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29C7E7D2A7D04F0007760A8 /* Voices.swift */; };
+		B29C7E812A7D1CEC007760A8 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29C7E802A7D1CEC007760A8 /* AudioManager.swift */; };
+		B29C7E832A7D2261007760A8 /* svist.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B29C7E822A7D2261007760A8 /* svist.mp3 */; };
+		B29DF55D2A7E3A7100639777 /* PageControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = B29DF55C2A7E3A7100639777 /* PageControl.xib */; };
+		B29DF5602A7E3CFF00639777 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29DF55F2A7E3CFF00639777 /* PreviewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,8 +141,11 @@
 		B29740F92A7A9A0000DE1785 /* sound16.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound16.m4a; sourceTree = "<group>"; };
 		B297410F2A7AD26500DE1785 /* OnbordingBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbordingBaseController.swift; sourceTree = "<group>"; };
 		B29741112A7AD29300DE1785 /* OnbordingBaseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnbordingBaseController.xib; sourceTree = "<group>"; };
-		B297411D2A7AF29300DE1785 /* OvalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvalView.swift; sourceTree = "<group>"; };
-		B297411F2A7AF2B600DE1785 /* OvalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OvalView.xib; sourceTree = "<group>"; };
+		B29C7E7D2A7D04F0007760A8 /* Voices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voices.swift; sourceTree = "<group>"; };
+		B29C7E802A7D1CEC007760A8 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		B29C7E822A7D2261007760A8 /* svist.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = svist.mp3; sourceTree = "<group>"; };
+		B29DF55C2A7E3A7100639777 /* PageControl.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageControl.xib; sourceTree = "<group>"; };
+		B29DF55F2A7E3CFF00639777 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				B20158562A7B912E0010A592 /* PageControl.swift */,
+				B29DF55C2A7E3A7100639777 /* PageControl.xib */,
 			);
 			path = PageControl;
 			sourceTree = "<group>";
@@ -188,6 +195,15 @@
 			path = CustomCell;
 			sourceTree = "<group>";
 		};
+		B20667722A7CD81F000148EC /* DirectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B215B8D72A793FFB0064B483 /* DirectionViewController.swift */,
+				B215B8DD2A7940940064B483 /* DirectionViewController.xib */,
+			);
+			path = DirectionViewController;
+			sourceTree = "<group>";
+		};
 		B215B88B2A78FF290064B483 = {
 			isa = PBXGroup;
 			children = (
@@ -207,8 +223,10 @@
 		B215B8962A78FF290064B483 /* chatCat */ = {
 			isa = PBXGroup;
 			children = (
+				B29C7E7F2A7D1CD6007760A8 /* AudioManager */,
 				B215B8AC2A78FFCE0064B483 /* Application */,
 				B215B8AB2A78FFBF0064B483 /* View */,
+				B29C7E7B2A7D04C8007760A8 /* Model */,
 				B215B8AF2A79007B0064B483 /* Helpers */,
 				B215B8AD2A7900230064B483 /* SupportingFilles */,
 			);
@@ -248,6 +266,7 @@
 		B215B8AE2A79005A0064B483 /* Onbording */ = {
 			isa = PBXGroup;
 			children = (
+				B29DF55E2A7E3CDF00639777 /* Preview */,
 				B29740C02A799B1C00DE1785 /* OnbodingPageViewController.swift */,
 				B20158502A7B8EA30010A592 /* FreeView */,
 				B29741132A7ADD3400DE1785 /* BaseView */,
@@ -301,8 +320,7 @@
 			children = (
 				B215B8D02A792A4E0064B483 /* WhistleViewController.swift */,
 				B215B8D52A7937ED0064B483 /* WhistleViewController.xib */,
-				B215B8D72A793FFB0064B483 /* DirectionViewController.swift */,
-				B215B8DD2A7940940064B483 /* DirectionViewController.xib */,
+				B20667722A7CD81F000148EC /* DirectionViewController */,
 			);
 			path = Whistle;
 			sourceTree = "<group>";
@@ -360,7 +378,6 @@
 			children = (
 				B20158582A7BC4B30010A592 /* StickerView */,
 				B20158552A7B91020010A592 /* PageControl */,
-				B297411C2A7AF27200DE1785 /* OvalView */,
 				B29740D52A7A533800DE1785 /* EmotionView */,
 				B29740D02A7A4E2F00DE1785 /* ShadowView */,
 			);
@@ -390,6 +407,7 @@
 			children = (
 				B29740E82A7A9A0000DE1785 /* sound0.m4a */,
 				B29740F62A7A9A0000DE1785 /* sound1.m4a */,
+				B29C7E822A7D2261007760A8 /* svist.mp3 */,
 				B29740F22A7A9A0000DE1785 /* sound2.m4a */,
 				B29740F32A7A9A0000DE1785 /* sound3.m4a */,
 				B29740F72A7A9A0000DE1785 /* sound4.m4a */,
@@ -432,13 +450,28 @@
 			path = BaseView;
 			sourceTree = "<group>";
 		};
-		B297411C2A7AF27200DE1785 /* OvalView */ = {
+		B29C7E7B2A7D04C8007760A8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B297411D2A7AF29300DE1785 /* OvalView.swift */,
-				B297411F2A7AF2B600DE1785 /* OvalView.xib */,
+				B29C7E7D2A7D04F0007760A8 /* Voices.swift */,
 			);
-			path = OvalView;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B29C7E7F2A7D1CD6007760A8 /* AudioManager */ = {
+			isa = PBXGroup;
+			children = (
+				B29C7E802A7D1CEC007760A8 /* AudioManager.swift */,
+			);
+			path = AudioManager;
+			sourceTree = "<group>";
+		};
+		B29DF55E2A7E3CDF00639777 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				B29DF55F2A7E3CFF00639777 /* PreviewViewController.swift */,
+			);
+			path = Preview;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -511,14 +544,15 @@
 				B20158612A7BD5060010A592 /* CustomViewCell.xib in Resources */,
 				B29741062A7A9A0000DE1785 /* sound13.m4a in Resources */,
 				B215B8E22A795DFC0064B483 /* ChatViewController.xib in Resources */,
+				B29DF55D2A7E3A7100639777 /* PageControl.xib in Resources */,
 				B20158542A7B8F500010A592 /* StartFreeViewController.xib in Resources */,
 				B29740CC2A7A430200DE1785 /* NavBarView.xib in Resources */,
 				B29740DC2A7A5E6500DE1785 /* sound10.m4a in Resources */,
 				B29740D42A7A4F1500DE1785 /* ShadowView.xib in Resources */,
 				B29740FC2A7A9A0000DE1785 /* sound19.m4a in Resources */,
 				B29740FB2A7A9A0000DE1785 /* sound14.m4a in Resources */,
-				B29741202A7AF2B600DE1785 /* OvalView.xib in Resources */,
 				B29741092A7A9A0000DE1785 /* sound6.m4a in Resources */,
+				B29C7E832A7D2261007760A8 /* svist.mp3 in Resources */,
 				B297410E2A7A9A0000DE1785 /* sound16.m4a in Resources */,
 				B29740B92A798A5D00DE1785 /* AVArela.ttf in Resources */,
 				B201585C2A7BC4DD0010A592 /* StickerView.xib in Resources */,
@@ -554,12 +588,13 @@
 				B29740D72A7A53C200DE1785 /* EmotionView.swift in Sources */,
 				B215B8EA2A795F3F0064B483 /* UIView+Ext.swift in Sources */,
 				B215B8D82A793FFB0064B483 /* DirectionViewController.swift in Sources */,
+				B29C7E7E2A7D04F0007760A8 /* Voices.swift in Sources */,
 				B215B8CD2A7929800064B483 /* EmotionsViewController.swift in Sources */,
-				B297411E2A7AF29300DE1785 /* OvalView.swift in Sources */,
 				B215B8B42A7900DE0064B483 /* UIColor+Ext.swift in Sources */,
 				B20158572A7B912E0010A592 /* PageControl.swift in Sources */,
 				B215B8CF2A7929EA0064B483 /* NotesViewController.swift in Sources */,
 				B215B8982A78FF290064B483 /* AppDelegate.swift in Sources */,
+				B29C7E812A7D1CEC007760A8 /* AudioManager.swift in Sources */,
 				B29740C42A7A318B00DE1785 /* SettingsViewController.swift in Sources */,
 				B29740D22A7A4E4A00DE1785 /* ShadowView.swift in Sources */,
 				B201585F2A7BD4EC0010A592 /* CustomViewCell.swift in Sources */,
@@ -573,6 +608,7 @@
 				B20158522A7B8EF90010A592 /* StartFreeViewController.swift in Sources */,
 				B29740DE2A7A633C00DE1785 /* ViewCollectionCell.swift in Sources */,
 				B215B8CB2A7929280064B483 /* ChatViewController.swift in Sources */,
+				B29DF5602A7E3CFF00639777 /* PreviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,10 +750,12 @@
 				DEVELOPMENT_TEAM = LUQ926BAHR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = chatCat/SupportingFilles/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Для записи включите микрофон";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -741,10 +779,12 @@
 				DEVELOPMENT_TEAM = LUQ926BAHR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = chatCat/SupportingFilles/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Для записи включите микрофон";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
