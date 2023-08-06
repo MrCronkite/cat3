@@ -41,6 +41,7 @@ final class StartFreeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         delegate?.showButton()
         self.buttonGetFree.isHidden = false
+        setupPulsingAnimation()
         UIView.animate(withDuration: 0.7) {
             self.buttonGetFree.backgroundColor = R.Colors.btnActive
         }
@@ -113,5 +114,22 @@ extension StartFreeViewController {
         
         ovalView.layer.addSublayer(shapeLayer)
     }
+    
+    private func setupPulsingAnimation() {
+            let pulseLayer = CALayer()
+        pulseLayer.bounds = buttonGetFree.bounds
+            pulseLayer.position = buttonGetFree.center
+            pulseLayer.cornerRadius = 25
+        pulseLayer.backgroundColor = R.Colors.btnActive.cgColor
+            view.layer.insertSublayer(pulseLayer, below: buttonGetFree.layer)
+            
+            let animation = CABasicAnimation(keyPath: "transform.scale")
+            animation.duration = 1
+            animation.fromValue = 0.9
+        animation.toValue = 1.1
+            animation.autoreverses = true
+            animation.repeatCount = Float.infinity
+            pulseLayer.add(animation, forKey: "pulsing")
+        }
 }
 

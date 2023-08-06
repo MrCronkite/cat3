@@ -11,7 +11,8 @@ import AVFoundation
 @IBDesignable
 final class EmotionView: UIView {
     
-    var audioPlayer: AVAudioPlayer?
+    let audioManager = AudioManagerImpl()
+    var timer: Timer?
     
     @IBOutlet weak var imageCatView: UIImageView!
     @IBOutlet weak var volumeUp: UIImageView!
@@ -46,27 +47,29 @@ extension EmotionView {
     }
     
     @objc private func handlerTap(_ gesture: UITapGestureRecognizer) {
-        self.layer.borderColor = UIColor.blue.cgColor
-        self.layer.borderWidth = 1
         volumeUp.image = R.Images.Emotions.volumeUp
-        audioPlayer?.play()
+        audioManager.play()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerDidFire), userInfo: nil, repeats: false)
+
+        UIView.animate(withDuration: 0.6) {
+            self.layer.borderColor = UIColor.blue.cgColor
+            self.layer.borderWidth = 1
+        }
+    }
+    
+    @objc func timerDidFire() {
+        timer?.invalidate()
+        volumeUp.image = .none
+        UIView.animate(withDuration: 0.1) {
+            self.layer.borderColor = UIColor.white.cgColor
+            self.layer.borderWidth = 1
+        }
     }
     
     func setupAV(valueSong: Int) {
         guard let soundURL = Bundle.main.url(forResource: "sound\(valueSong)", withExtension: "m4a") else {
             fatalError("Звуковой файл не найден")
         }
-        
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-        } catch {
-            print("Ошибка создания AVAudioPlayer: \(error.localizedDescription)")
-        }
-        
-        if let player = audioPlayer {
-            player.prepareToPlay()
-        } else {
-            print("AVAudioPlayer не создан")
-        }
+        audioManager.setupPlayer(link: soundURL )
     }
 }

@@ -13,6 +13,8 @@ final class EmotionsViewController: UIViewController {
     
     @IBOutlet weak var navBar: NavBarView!
     
+    var audioManager = AudioManagerImpl()
+    
     var counter = 0
     let columnCount = 7
     let itemCountPerColumn = 3
@@ -21,6 +23,15 @@ final class EmotionsViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("ativate")
+        audioManager.setupAudioSession(true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //audioManager.deactivateAudioSession()
     }
 }
 

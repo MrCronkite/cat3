@@ -16,7 +16,8 @@ final class NotesViewController: UIViewController {
     var isRecording = false
     let animationLayer1 = CALayer()
     let animationLayer = CALayer()
-    
+    var link: URL?
+    let storeManager = StorageManagerImpl()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,6 +30,10 @@ final class NotesViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
         setAudioRecorder()
     }
     
@@ -55,6 +60,17 @@ extension NotesViewController {
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         playButton.addGestureRecognizer(longPressGesture)
+        
+        if let data = storeManager.get(forKey: .keyVoice) {
+            self.voices = data
+            tableView.isHidden = false
+            catImageView.isHidden = true
+            titleDirection.isHidden = true
+        } else {
+            tableView.isHidden = true
+            catImageView.isHidden = false
+            titleDirection.isHidden = false
+        }
     }
     
     @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
@@ -93,6 +109,8 @@ extension NotesViewController {
             animationLayer1.add(animation1, forKey: "pulseAnimation1")
             animationLayer.add(animation, forKey: "pulseAnimation")
             
+            saveFile()
+            
             if let recorder = audioRecorder, !recorder.isRecording {
                 recorder.record()
             }
@@ -102,6 +120,7 @@ extension NotesViewController {
             self.animationLayer1.removeAllAnimations()
             let vc = VoiceViewController()
             vc.delegate = self
+            vc.audioLink = self.link
             navigationController?.pushViewController(vc, animated: true)
             
             if let recorder = audioRecorder, recorder.isRecording {
@@ -113,7 +132,12 @@ extension NotesViewController {
 
 extension NotesViewController: VoiceViewControllerDelegate {
     func showVoices(voices: [Voices]) {
-        self.voices = voices
+        if tableView.isHidden == true {
+            tableView.isHidden = false
+            catImageView.isHidden = true
+            titleDirection.isHidden = true
+        }
+        self.voices = storeManager.get(forKey: .keyVoice)!
         tableView.reloadData()
     }
 }
@@ -146,6 +170,7 @@ extension NotesViewController: NavBarViewDelegate {
     }
 }
 
+//MARK: - AUDIO RECORDER
 extension NotesViewController: AVAudioRecorderDelegate {
     private func setAudioRecorder() {
         let session = AVAudioSession.sharedInstance()
@@ -168,20 +193,22 @@ extension NotesViewController: AVAudioRecorderDelegate {
         let currentDate = Date()
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMMdd'at'h:mm"
+        dateFormatter.dateFormat = "MMMM dd 'at' HH:mm:ss"
         
         let dateString = dateFormatter.string(from: currentDate)
         
         if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            
             let audioURL = documentsDirectory.appendingPathComponent("Audio\(dateString).wav")
+            self.link = audioURL
+            
             let audioSettings: [String: Any] = [
                 AVFormatIDKey: kAudioFormatLinearPCM,
                 AVSampleRateKey: 44100.0,
-                AVNumberOfChannelsKey: 2,
+                AVNumberOfChannelsKey: 1,
                 AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
             ]
             
-            UserDefaults.standard.set(audioURL, forKey: "recordedAudioURL")
             do {
                 audioRecorder = try AVAudioRecorder(url: audioURL, settings: audioSettings)
                 audioRecorder?.delegate = self

@@ -43,6 +43,49 @@ extension SettingsViewController {
         shareView.layer.cornerRadius = 15
         shareView.backgroundColor = R.Colors.bgSettingd
         tintView.backgroundColor = R.Colors.tintColor
+        
+        let tapPrivaceView = UITapGestureRecognizer(target: self, action: #selector(handlerTap(_:)))
+        privaceView.addGestureRecognizer(tapPrivaceView)
+        privaceView.isUserInteractionEnabled = true
+        
+        let tapPaperView = UITapGestureRecognizer(target: self, action: #selector(handlerPaperTap(_:)))
+        paperView.addGestureRecognizer(tapPaperView)
+        paperView.isUserInteractionEnabled = true
+        
+        let tapRateView = UITapGestureRecognizer(target: self, action: #selector(handlerReview(_:)))
+        rateView.addGestureRecognizer(tapRateView)
+        rateView.isUserInteractionEnabled = true
+        
+        let tapShareView = UITapGestureRecognizer(target: self, action: #selector(handlerShare(_:)))
+        shareView.addGestureRecognizer(tapShareView)
+        shareView.isUserInteractionEnabled = true
+    }
+    
+    
+    @objc func handlerTap(_ gesture: UITapGestureRecognizer) {
+        if let url = URL(string: "https://github.com/MrCronkite/toDoTasks/blob/main/todoApp/Model/Element.swift") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    @objc func handlerPaperTap(_ gesture: UITapGestureRecognizer) {
+        if let url = URL(string: "https://github.com/MrCronkite/toDoTasks/blob/main/todoApp/Model/Element.swift") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    @objc func handlerReview(_ gesture: UITapGestureRecognizer) {
+        if let url = URL(string: "itms-apps://itunes.apple.com/app/idYOUR_APP_ID?action=write-review") {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    @objc func handlerShare(_ gesture: UITapGestureRecognizer) {
+        let textToShare = "Привет! Я использую это замечательное приложение!"
+                let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
+                present(activityViewController, animated: true, completion: nil)
     }
 }
- 
+

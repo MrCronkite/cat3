@@ -10,6 +10,12 @@ import AVFoundation
 
 final class WhistleViewController: UIViewController {
     
+    var audioEngine: AVAudioEngine!
+    var audioPlayerNode: AVAudioPlayerNode!
+    var audioFile: AVAudioFile!
+    var pitchEffect: AVAudioUnitTimePitch!
+    var audioManager = AudioManagerImpl()
+    
     @IBOutlet weak var howToUseButton: UIButton!
     @IBOutlet weak var noiseTitle: UILabel!
     @IBOutlet weak var sliderNoise: UISlider!
@@ -19,8 +25,19 @@ final class WhistleViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        setupAudioSession()
         setupView()
+        setupAudio()
+        updatePitchEffect()
     }
+    override func viewWillAppear(_ animated: Bool) {
+       audioManager.setupAudioSession(true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+       //audioManager.deactivateAudioSession()
+    }
+    
     @IBAction func showDirection(_ sender: Any) {
         let vc = DirectionViewController()
         vc.modalPresentationStyle = .popover
@@ -28,10 +45,26 @@ final class WhistleViewController: UIViewController {
     }
     
     @IBAction func updateSlider(_ sender: Any) {
+        updatePitchEffect()
         updateLabelValue(value: sliderNoise.value)
     }
     
     @IBAction func goWhistle(_ sender: Any) {
+        print("goWhistle")
+        if !audioEngine.isRunning {
+            audioPlayerNode.stop()
+            audioPlayerNode.reset()
+            audioManager.setupAudioSession(true)
+        } else {
+            let audioURL = Bundle.main.url(forResource: "svist", withExtension: "mp3")!
+            do {
+                audioFile = try AVAudioFile(forReading: audioURL)
+                audioPlayerNode.scheduleFile(audioFile, at: nil, completionHandler: nil)
+                audioPlayerNode.play()
+            } catch {
+                print("Ошибка при воспроизведении аудио: \(error.localizedDescription)")
+            }
+        }
         
     }
 }
@@ -41,6 +74,7 @@ extension WhistleViewController {
         howToUseButton.tintColor = R.Colors.viewActive
         noiseTitle.textColor = R.Colors.viewActive
         sliderNoise.minimumTrackTintColor = R.Colors.viewActive
+        
         navigationController?.navigationBar.isHidden = true
         navBar.delegate = self
     }
@@ -49,6 +83,40 @@ extension WhistleViewController {
         let formattedValue = String(format: "%.f", value)
         noiseTitle.text = "\(formattedValue) HZ"
     }
+    
+    func setupAudio() {
+        audioEngine = AVAudioEngine()
+        audioPlayerNode = AVAudioPlayerNode()
+        audioPlayerNode.volume = 1
+        audioEngine.attach(audioPlayerNode)
+        
+        pitchEffect = AVAudioUnitTimePitch()
+        audioEngine.attach(pitchEffect)
+        
+        audioEngine.connect(audioPlayerNode, to: pitchEffect, format: nil)
+        audioEngine.connect(pitchEffect, to: audioEngine.outputNode, format: nil)
+        
+        do {
+            try audioEngine.start()
+        } catch {
+            print("Ошибка при запуске audioEngine: \(error.localizedDescription)")
+        }
+    }
+    
+    func updatePitchEffect() {
+        let frequency = sliderNoise.value
+        pitchEffect.pitch = frequency
+    }
+    
+        func setupAudioSession() {
+            do {
+                let audioSession = AVAudioSession.sharedInstance()
+                try audioSession.setCategory(.playback, mode: .default)
+                try audioSession.setActive(true)
+            } catch {
+                print("Ошибка при настройке аудиосессии: \(error.localizedDescription)")
+            }
+        }
 }
 
 extension WhistleViewController: NavBarViewDelegate {
@@ -56,6 +124,4 @@ extension WhistleViewController: NavBarViewDelegate {
         let vc = SettingsViewController()
         show(vc, sender: nil)
     }
-    
-    
 }

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 protocol VoiceViewControllerDelegate: AnyObject {
     func showVoices(voices: [Voices])
@@ -14,9 +13,11 @@ protocol VoiceViewControllerDelegate: AnyObject {
 
 final class VoiceViewController: UIViewController {
     
-    var audioPlayer: AVAudioPlayer?
-    var voices = [Voices]()
+    var audioLink: URL?
+    var voices = [Voices]() 
     var duration = String()
+    var audioManager = AudioManagerImpl()
+    var storeManager = StorageManagerImpl()
     
     weak var delegate: VoiceViewControllerDelegate?
     
@@ -33,36 +34,43 @@ final class VoiceViewController: UIViewController {
         setupView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        audioManager.deactivateAudioSession()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        audioManager.deactivateAudioSession()
+    }
+    
     @IBAction func closeVC(_ sender: Any) {
-        if let audioURL = UserDefaults.standard.url(forKey: "recordedAudioURL") {
-            self.deleteAudioFile(atPath: audioURL.absoluteString)
-        }
+        deleteAudioFile(at: audioLink!)
         navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func playVoice(_ sender: Any) {
-        audioPlayer?.play()
+        audioManager.setupAudioSession(true)
+        audioManager.play()
     }
     
     @IBAction func saveVoice(_ sender: Any) {
-        guard let audioURL = UserDefaults.standard.url(forKey: "recordedAudioURL") else { return }
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd 'at' h:mm a"
         
         let dateString = dateFormatter.string(from: Date())
         
         let voice: Voices = .init(name: textFieldNameVoice.text ?? "No name voice",
-                                  voiceUrl: audioURL,
+                                  voiceUrl: audioLink!,
                                   data: dateString,
                                   duration: self.duration)
+        voices = storeManager.get(forKey: .keyVoice) ?? []
         voices.append(voice)
+        storeManager.set(voices, forKey: .keyVoice)
         delegate?.showVoices(voices: voices)
-        
         navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func reRecordVoice(_ sender: Any) {
+        deleteAudioFile(at: audioLink!)
         navigationController?.popToRootViewController(animated: true)
     }
     
@@ -73,11 +81,12 @@ final class VoiceViewController: UIViewController {
             textFieldNameVoice.layer.borderColor = R.Colors.bgSettingd.cgColor
         }
     }
-    
 }
+
 
 extension VoiceViewController {
     private func setupView() {
+        tabBarController?.tabBar.isHidden = true
         view.backgroundColor = .white
         
         lableText.textColor = R.Colors.viewActive
@@ -90,47 +99,30 @@ extension VoiceViewController {
         textFieldNameVoice.layer.borderWidth = 1
         textFieldNameVoice.textColor = R.Colors.viewActive
         
-        saveVoiceButton.layer.cornerRadius = 20
+        saveVoiceButton.layer.cornerRadius = 25
+        saveVoiceButton.setTitleColor(.white, for: .normal)
         saveVoiceButton.backgroundColor = R.Colors.btnActive
         
         let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 14, height: textFieldNameVoice.frame.height))
         textFieldNameVoice.leftView = leftPaddingView
         textFieldNameVoice.leftViewMode = .always
-        textFieldNameVoice.delegate = self
         
-        let okButton = UIButton(type: .system)
-           okButton.setTitle("OK", for: .normal)
-           okButton.addTarget(self, action: #selector(hideKeyboard), for: .touchUpInside)
-
-        textFieldNameVoice.inputAccessoryView = okButton
+        let player = audioManager.setupAudioPlayer(link: self.audioLink!)
         
-        guard let audioURL = UserDefaults.standard.url(forKey: "recordedAudioURL") else { return }
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: audioURL)
-            audioPlayer?.prepareToPlay()
-        } catch {
-            print("Ошибка воспроизведения аудио: \(error.localizedDescription)")
-        }
-        
-        guard let player = audioPlayer else { return }
         let currentTime = player.duration
-        let duration = formatTime(currentTime)
+        let duration = self.lableText.formatTime(currentTime)
         self.duration = duration
         timeVoiceText.text = duration
-        
-        func formatTime(_ time: TimeInterval) -> String {
-            let minutes = Int(time / 60)
-            let seconds = Int(time.truncatingRemainder(dividingBy: 60))
-            return String(format: "%02d:%02d", minutes, seconds)
-        }
     }
     
-    func deleteAudioFile(atPath path: String) {
+    func deleteAudioFile(at url: URL) {
+        
         let fileManager = FileManager.default
         do {
-            try fileManager.removeItem(atPath: path)
+            try fileManager.removeItem(at: url)
+            print("Аудиофайл успешно удален.")
         } catch {
-            print("Ошибка при удалении аудиофайла: \(error.localizedDescription)")
+            print("Ошибка при удалении аудиофайла: \(error)")
         }
     }
 }
@@ -140,9 +132,5 @@ extension VoiceViewController: UITextFieldDelegate {
         textField.inputAccessoryView = .some(UIButton(type: .system))
         textField.resignFirstResponder()
         return true
-    }
-    
-    @objc func hideKeyboard() {
-        textFieldNameVoice.resignFirstResponder()
     }
 }

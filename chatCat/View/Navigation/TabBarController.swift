@@ -16,11 +16,14 @@ enum Tabs: Int, CaseIterable {
 
 final class TabBarController: UITabBarController {
     
+    var audioManager = AudioManagerImpl()
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         configure()
         swichTo(tab: .notes)
+        audioManager.setupAudioSession(true)
     }
     
     required init?(coder: NSCoder) {

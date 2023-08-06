@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Voices {
+struct Voices: Codable {
     let name: String
     let voiceUrl: URL
     let data: String
