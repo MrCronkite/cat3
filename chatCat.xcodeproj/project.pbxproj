@@ -14,6 +14,7 @@
 		B201585C2A7BC4DD0010A592 /* StickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B201585B2A7BC4DD0010A592 /* StickerView.xib */; };
 		B201585F2A7BD4EC0010A592 /* CustomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201585E2A7BD4EC0010A592 /* CustomViewCell.swift */; };
 		B20158612A7BD5060010A592 /* CustomViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20158602A7BD5060010A592 /* CustomViewCell.xib */; };
+		B205B6762A80E49900A50C18 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B205B6752A80E49900A50C18 /* StoreKit.framework */; };
 		B215B8982A78FF290064B483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B215B8972A78FF290064B483 /* AppDelegate.swift */; };
 		B215B89A2A78FF290064B483 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B215B8992A78FF290064B483 /* SceneDelegate.swift */; };
 		B215B8A12A78FF2C0064B483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B215B8A02A78FF2C0064B483 /* Assets.xcassets */; };
@@ -85,6 +86,7 @@
 		B201585B2A7BC4DD0010A592 /* StickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StickerView.xib; sourceTree = "<group>"; };
 		B201585E2A7BD4EC0010A592 /* CustomViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewCell.swift; sourceTree = "<group>"; };
 		B20158602A7BD5060010A592 /* CustomViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomViewCell.xib; sourceTree = "<group>"; };
+		B205B6752A80E49900A50C18 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B215B8942A78FF290064B483 /* chatCat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chatCat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B215B8972A78FF290064B483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B215B8992A78FF290064B483 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B205B6762A80E49900A50C18 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +200,14 @@
 			path = CustomCell;
 			sourceTree = "<group>";
 		};
+		B205B6742A80E49800A50C18 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B205B6752A80E49900A50C18 /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B20667722A7CD81F000148EC /* DirectionViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +222,7 @@
 			children = (
 				B215B8962A78FF290064B483 /* chatCat */,
 				B215B8952A78FF290064B483 /* Products */,
+				B205B6742A80E49800A50C18 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

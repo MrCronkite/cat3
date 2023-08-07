@@ -19,5 +19,19 @@ extension UIView {
         let seconds = Int(time.truncatingRemainder(dividingBy: 60))
         return String(format: "%02d:%02d", minutes, seconds)
     }
+    
+    func animateButtonPressed(view: UIView) {
+        print("hi")
+        UIView.animate(withDuration: 0.1, animations: {
+            view.alpha = 0.7
+            view.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        }) { (completed) in
+            // По окончании анимации возвращаем в исходное состояние
+            UIView.animate(withDuration: 0.1, animations: {
+                view.alpha = 1.0
+                view.transform = CGAffineTransform.identity
+            })
+        }
+    }
 }
 

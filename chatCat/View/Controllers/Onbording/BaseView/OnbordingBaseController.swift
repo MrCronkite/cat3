@@ -10,7 +10,6 @@ import UIKit
 final class OnbordingBaseController: UIViewController {
     
     @IBOutlet weak var ovalView: UIView!
-    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var lableText: UILabel!
     @IBOutlet weak var subtitleText: UILabel!
@@ -18,10 +17,11 @@ final class OnbordingBaseController: UIViewController {
     init(image: UIImage? = nil, text: String? = nil, subtitle: String? = nil){
         super.init(nibName: nil, bundle: nil)
         view.backgroundColor = .white
-        bgView.backgroundColor = R.Colors.bgColor
         self.imageView?.image = image
         self.lableText?.text = text
         self.subtitleText.text = subtitle
+        
+        self.imageView?.backgroundColor = R.Colors.bgColor
     }
     
     override func viewWillLayoutSubviews() {

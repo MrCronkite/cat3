@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StoreKit
 
 protocol StartFreeViewControllerDelegate: AnyObject {
     func showButton()
@@ -26,7 +27,7 @@ final class StartFreeViewController: UIViewController {
     @IBOutlet weak var subtitle2: UILabel!
     
     weak var delegate: StartFreeViewControllerDelegate?
-
+    
     override func viewWillLayoutSubviews() {
         drawOval()
     }
@@ -36,6 +37,8 @@ final class StartFreeViewController: UIViewController {
         
         setupTitleLabel()
         setupView()
+        
+        SKPaymentQueue.default().add(self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -116,20 +119,69 @@ extension StartFreeViewController {
     }
     
     private func setupPulsingAnimation() {
-            let pulseLayer = CALayer()
+        let pulseLayer = CALayer()
         pulseLayer.bounds = buttonGetFree.bounds
-            pulseLayer.position = buttonGetFree.center
-            pulseLayer.cornerRadius = 25
+        pulseLayer.position = buttonGetFree.center
+        pulseLayer.cornerRadius = 25
         pulseLayer.backgroundColor = R.Colors.btnActive.cgColor
-            view.layer.insertSublayer(pulseLayer, below: buttonGetFree.layer)
-            
-            let animation = CABasicAnimation(keyPath: "transform.scale")
-            animation.duration = 1
-            animation.fromValue = 0.9
+        view.layer.insertSublayer(pulseLayer, below: buttonGetFree.layer)
+        
+        let animation = CABasicAnimation(keyPath: "transform.scale")
+        animation.duration = 1
+        animation.fromValue = 0.9
         animation.toValue = 1.1
-            animation.autoreverses = true
-            animation.repeatCount = Float.infinity
-            pulseLayer.add(animation, forKey: "pulsing")
-        }
+        animation.autoreverses = true
+        animation.repeatCount = Float.infinity
+        pulseLayer.add(animation, forKey: "pulsing")
+    }
 }
 
+extension StartFreeViewController: SKPaymentTransactionObserver {
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            switch transaction.transactionState {
+            case .purchased:
+                // Обработка успешной покупки
+                completeTransaction(transaction: transaction)
+            case .restored:
+                // Обработка восстановления покупки (если поддерживается)
+                restoreTransaction(transaction: transaction)
+            case .failed:
+                // Обработка неудачной покупки
+                failTransaction(transaction: transaction)
+            case .deferred:
+                // Покупка отложена (только для подписок, если поддерживается)
+                break
+            case .purchasing:
+                // Покупка выполняется
+                break
+            @unknown default:
+                break
+            }
+        }
+    }
+    
+    private func completeTransaction(transaction: SKPaymentTransaction) {
+        // Ваш код для обработки успешной покупки
+        // Например, разблокировка функциональности, доступ к контенту и т. д.
+        
+        // После успешной обработки покупки нужно завершить транзакцию:
+        SKPaymentQueue.default().finishTransaction(transaction)
+    }
+    
+    private func restoreTransaction(transaction: SKPaymentTransaction) {
+        // Ваш код для обработки восстановления покупки (если поддерживается)
+        // Например, разблокировка функциональности, доступ к контенту и т. д.
+        
+        // После успешной обработки восстановления покупки нужно завершить транзакцию:
+        SKPaymentQueue.default().finishTransaction(transaction)
+    }
+    
+    private func failTransaction(transaction: SKPaymentTransaction) {
+        // Ваш код для обработки неудачной покупки
+        // Например, показать сообщение об ошибке
+        
+        // После обработки неудачной покупки нужно завершить транзакцию:
+        SKPaymentQueue.default().finishTransaction(transaction)
+    }
+}

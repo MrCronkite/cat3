@@ -98,6 +98,7 @@ extension VoiceViewController {
         textFieldNameVoice.layer.cornerRadius = 14
         textFieldNameVoice.layer.borderWidth = 1
         textFieldNameVoice.textColor = R.Colors.viewActive
+        textFieldNameVoice.delegate = self
         
         saveVoiceButton.layer.cornerRadius = 25
         saveVoiceButton.setTitleColor(.white, for: .normal)
@@ -129,7 +130,7 @@ extension VoiceViewController {
 
 extension VoiceViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.inputAccessoryView = .some(UIButton(type: .system))
+        
         textField.resignFirstResponder()
         return true
     }

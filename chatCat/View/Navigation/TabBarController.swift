@@ -22,7 +22,7 @@ final class TabBarController: UITabBarController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         configure()
-        swichTo(tab: .notes)
+        swichTo(tab: .chat)
         audioManager.setupAudioSession(true)
     }
     

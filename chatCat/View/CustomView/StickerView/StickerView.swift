@@ -10,6 +10,8 @@ import UIKit
 @IBDesignable
 final class StickerView: UIView {
     
+    @IBOutlet weak var stickerImage: UIImageView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     
@@ -29,6 +31,10 @@ extension StickerView {
         guard let view = self.loadViewFromNib(nibName: "StickerView") else { return }
         view.frame = self.bounds
         self.addSubview(view)
+    }
+    
+    func setupImage(image: String) {
+        stickerImage.image = UIImage(named: image)
     }
 }
 

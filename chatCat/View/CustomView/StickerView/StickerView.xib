@@ -2,13 +2,17 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StickerView" customModule="chatCat" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StickerView" customModule="chatCat" customModuleProvider="target">
+            <connections>
+                <outlet property="stickerImage" destination="TNm-Rx-PAw" id="sTF-Ev-lIP"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="H6Q-99-m0h">
             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
@@ -22,7 +26,6 @@
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="STT-bW-7Vt"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="STT-bW-7Vt" firstAttribute="bottom" secondItem="cd4-hu-Qty" secondAttribute="bottom" constant="-34" id="40L-SI-kH9"/>
                 <constraint firstItem="TNm-Rx-PAw" firstAttribute="top" secondItem="H6Q-99-m0h" secondAttribute="top" id="5QU-ac-Qsz"/>
@@ -40,8 +43,5 @@
     <resources>
         <image name="1" width="72" height="70"/>
         <image name="bgStick" width="176" height="173"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

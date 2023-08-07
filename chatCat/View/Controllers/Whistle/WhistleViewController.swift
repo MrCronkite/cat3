@@ -34,10 +34,6 @@ final class WhistleViewController: UIViewController {
        audioManager.setupAudioSession(true)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-       //audioManager.deactivateAudioSession()
-    }
-    
     @IBAction func showDirection(_ sender: Any) {
         let vc = DirectionViewController()
         vc.modalPresentationStyle = .popover
@@ -50,7 +46,6 @@ final class WhistleViewController: UIViewController {
     }
     
     @IBAction func goWhistle(_ sender: Any) {
-        print("goWhistle")
         if !audioEngine.isRunning {
             audioPlayerNode.stop()
             audioPlayerNode.reset()
@@ -74,9 +69,11 @@ extension WhistleViewController {
         howToUseButton.tintColor = R.Colors.viewActive
         noiseTitle.textColor = R.Colors.viewActive
         sliderNoise.minimumTrackTintColor = R.Colors.viewActive
+        sliderNoise.setThumbImage(UIImage(named: "thumb"), for: .normal)
         
         navigationController?.navigationBar.isHidden = true
         navBar.delegate = self
+        navBar.titleText.text = ""
     }
     
     func updateLabelValue(value: Float) {

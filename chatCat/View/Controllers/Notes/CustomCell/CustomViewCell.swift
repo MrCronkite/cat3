@@ -40,6 +40,13 @@ extension CustomViewCell {
         bgView.layer.cornerRadius = 20
         bgView.backgroundColor = R.Colors.bgSettingd
         
+        let tapShareView = UITapGestureRecognizer(target: self, action: #selector(animate(_:)))
+        bgView.addGestureRecognizer(tapShareView)
+        bgView.isUserInteractionEnabled = true
+    }
+    
+    @objc func animate(_ gesture: UITapGestureRecognizer) {
+        print("hi")
     }
 }
 

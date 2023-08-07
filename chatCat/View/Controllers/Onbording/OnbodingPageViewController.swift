@@ -48,11 +48,11 @@ extension OnbordingPageViewController {
         }
         
         NSLayoutConstraint.activate([
-            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -58),
+            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -28),
             nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             nextButton.heightAnchor.constraint(equalToConstant: 52),
-            pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 485),
+            pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -280),
             pageControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             pageControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             pageControl.heightAnchor.constraint(equalToConstant: 8),
@@ -78,7 +78,6 @@ extension OnbordingPageViewController {
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
         pageViewController.didMove(toParent: self)
-        
     }
     
     @objc func nextButtonTapped() {

@@ -18,6 +18,7 @@ final class NotesViewController: UIViewController {
     let animationLayer = CALayer()
     var link: URL?
     let storeManager = StorageManagerImpl()
+    let audioManger = AudioManagerImpl()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -34,6 +35,11 @@ final class NotesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
+        if voices.count == 0 {
+            catImageView.isHidden = false
+            titleDirection.isHidden = false
+            tableView.isHidden = true
+        }
         setAudioRecorder()
     }
     
@@ -153,13 +159,50 @@ extension NotesViewController: UITableViewDataSource {
         cell.data.text = voices[indexPath.row].data
         cell.title.text = voices[indexPath.row].name
         cell.time.text = voices[indexPath.row].duration
+        cell.selectionStyle = .none
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        voices.remove(at: indexPath.row)
+        storeManager.set(voices, forKey: .keyVoice)
+        tableView.deleteRows(at: [indexPath], with: .left)
+        if voices.count == 0 {
+            self.tableView.isHidden = true
+            self.catImageView.isHidden = false
+            self.titleDirection.isHidden = false
+        }
+        }
+            
+        func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+            return true
+        }
 }
 
 extension NotesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         72
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            UIView.animate(withDuration: 0.1, animations: {
+                cell.alpha = 0.7
+                cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+            }) { (completed) in
+                UIView.animate(withDuration: 0.1, animations: {
+                    cell.alpha = 1.0
+                    cell.transform = CGAffineTransform.identity
+                })
+            }
+            audioManger.setupPlayer(link: voices[indexPath.row].voiceUrl)
+            audioManger.setupAudioSession(true)
+            audioManger.play()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        setAudioRecorder()
     }
 }
 

@@ -8,12 +8,7 @@
 import AVFoundation
 import UIKit
 
-protocol AudioManager {
-    
-}
-
 final class AudioManagerImpl {
-    
     var audioPlayer = AVAudioPlayer()
     var audioSession = AVAudioSession()
     private var audioRecorder: AVAudioRecorder?
@@ -23,7 +18,6 @@ final class AudioManagerImpl {
             let audioSession = AVAudioSession.sharedInstance()
             try audioSession.setCategory(.playback, mode: .default)
             try audioSession.setActive(state)
-            print("Аудио сессия переведена в активное состояние.")
         } catch {
             print("Ошибка при настройке аудиосессии: \(error.localizedDescription)")
         }
@@ -40,6 +34,7 @@ final class AudioManagerImpl {
     }
     
     func setupPlayer(link: URL) {
+        print(link)
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: link)
             audioPlayer.prepareToPlay()
@@ -51,7 +46,6 @@ final class AudioManagerImpl {
     func deactivateAudioSession() {
             do {
                 try audioSession.setCategory(.record, mode: .default)
-                print("Аудио сессия переведена в неактивное состояние.")
             } catch {
                 print("Ошибка при переводе аудио сессии в неактивное состояние: \(error.localizedDescription)")
             }

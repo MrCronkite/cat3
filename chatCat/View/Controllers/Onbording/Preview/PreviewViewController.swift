@@ -29,7 +29,7 @@ final class PreviewViewController: UIViewController {
     }
     
     func startTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(timerDidFire), userInfo: nil, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(timerDidFire), userInfo: nil, repeats: false)
     }
     
     @objc func timerDidFire() {
