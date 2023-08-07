@@ -73,7 +73,7 @@ extension WhistleViewController {
         
         navigationController?.navigationBar.isHidden = true
         navBar.delegate = self
-        navBar.titleText.text = ""
+        navBar.titleText.text = "Whistle"
     }
     
     func updateLabelValue(value: Float) {

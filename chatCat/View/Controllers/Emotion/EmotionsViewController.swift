@@ -26,12 +26,7 @@ final class EmotionsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("ativate")
         audioManager.setupAudioSession(true)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        //audioManager.deactivateAudioSession()
     }
 }
 

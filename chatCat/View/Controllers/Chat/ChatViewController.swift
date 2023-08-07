@@ -14,6 +14,9 @@ final class ChatViewController: UIViewController {
     let animationLayer = CALayer()
     let audioManager = AudioManagerImpl()
     
+    @IBOutlet weak var titleText: UILabel!
+    @IBOutlet weak var reloadVoice: UIButton!
+    
     @IBOutlet weak var stickerView: StickerView!
     
     @IBOutlet weak var navBarView: NavBarView!
@@ -119,7 +122,7 @@ extension ChatViewController {
            } else if gesture.state == .ended {
                playButtonCat.setImage(R.Images.Chat.micro130, for: .normal)
                showSticker()
-               timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerDidFireCat), userInfo: nil, repeats: false)
+               timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(timerDidFireCat), userInfo: nil, repeats: false)
                
                self.animationLayer.removeAllAnimations()
                self.animationLayer1.removeAllAnimations()
@@ -133,6 +136,8 @@ extension ChatViewController {
         playButtonCat.isHidden = true
         textTranslate.isHidden = false
         playButton.isHidden = false
+        meView.isHidden = false
+        catView.isHidden = false
         timer?.invalidate()
     }
     
@@ -141,6 +146,8 @@ extension ChatViewController {
         playButtonCat.isHidden = false
         textTranslate.isHidden = true
         playButton.isHidden = true
+        meView.isHidden = false
+        catView.isHidden = false
         timer?.invalidate()
     }
     
@@ -153,8 +160,12 @@ extension ChatViewController {
         playButtonCat.isHidden = true
         textTranslate.isHidden = true
         playButton.isHidden = true
+        meView.isHidden = true
+        catView.isHidden = true
         audioManager.setupAudioSession(true)
         audioManager.play()
+        
+        AnalyticsManager.shared.log(.characterSelected(.init(name: String(randomNumber), origin: "ChatViewController", timestamp: Data())))
     }
     
     @objc func handleTapMe(_ gesture: UITapGestureRecognizer) {

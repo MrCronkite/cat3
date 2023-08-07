@@ -195,14 +195,7 @@ extension NotesViewController: UITableViewDelegate {
                     cell.transform = CGAffineTransform.identity
                 })
             }
-            audioManger.setupPlayer(link: voices[indexPath.row].voiceUrl)
-            audioManger.setupAudioSession(true)
-            audioManger.play()
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        setAudioRecorder()
     }
 }
 

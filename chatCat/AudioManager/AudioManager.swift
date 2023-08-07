@@ -34,7 +34,6 @@ final class AudioManagerImpl {
     }
     
     func setupPlayer(link: URL) {
-        print(link)
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: link)
             audioPlayer.prepareToPlay()
