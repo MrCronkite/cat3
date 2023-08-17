@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavBarView" customModule="chatCat" customModuleProvider="target">
             <connections>
                 <outlet property="titleText" destination="TZb-RY-3Qd" id="qjj-Md-dP6"/>
+                <outlet property="viewPro" destination="JD9-q6-DVr" id="4nL-Xe-6PM"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

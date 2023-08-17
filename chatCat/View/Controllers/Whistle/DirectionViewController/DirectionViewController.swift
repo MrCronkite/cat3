@@ -11,6 +11,7 @@ final class DirectionViewController: UIViewController {
     
     @IBOutlet weak var titleLable: UILabel!
     
+    @IBOutlet weak var tintView: UIView!
     @IBOutlet weak var directionLable: UILabel!
     @IBOutlet weak var directionLable1: UILabel!
     @IBOutlet weak var directionLable2: UILabel!
@@ -34,5 +35,6 @@ extension DirectionViewController {
         directionLable.text = R.Strings.Whistle.textDirection
         directionLable1.text = R.Strings.Whistle.textDirection1
         directionLable2.text = R.Strings.Whistle.textDirection2
+        tintView.layer.cornerRadius = 2
     }
 }

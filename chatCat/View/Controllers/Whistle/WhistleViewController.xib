@@ -54,9 +54,9 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdA-vY-67G">
-                    <rect key="frame" x="125.66666666666669" y="194" width="142" height="22"/>
+                    <rect key="frame" x="125.66666666666669" y="186" width="142" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="22" id="AWf-ea-5On"/>
+                        <constraint firstAttribute="height" constant="50" id="AWf-ea-5On"/>
                         <constraint firstAttribute="width" constant="142" id="eK6-I8-JJk"/>
                     </constraints>
                     <color key="tintColor" red="0.0" green="0.36351244379999997" blue="0.3462739152" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -87,7 +87,7 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="BvV-bn-YAL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0c1-ng-F2g"/>
-                <constraint firstItem="Ds5-Rd-Bf6" firstAttribute="top" secondItem="qdA-vY-67G" secondAttribute="bottom" constant="145" id="5Th-bn-OKs"/>
+                <constraint firstItem="Ds5-Rd-Bf6" firstAttribute="top" secondItem="qdA-vY-67G" secondAttribute="bottom" constant="125" id="5Th-bn-OKs"/>
                 <constraint firstItem="oM5-YQ-4Rn" firstAttribute="top" secondItem="KQZ-Q8-Ivz" secondAttribute="bottom" constant="40" id="DT9-Ny-I3h"/>
                 <constraint firstItem="KQZ-Q8-Ivz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FAG-af-eJp"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4jN-e1-O3L" secondAttribute="trailing" id="Joi-zk-16J"/>

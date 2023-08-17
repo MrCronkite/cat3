@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol ViewCollectionCellProtocol: AnyObject {
+    func present()
+}
+
 final class ViewCollectionCell: UICollectionViewCell {
+    
+    weak var delegate: ViewCollectionCellProtocol?
     
     let viewContent: EmotionView
     let titles: [String] = ["","Happy", "Neutral", "Clever", "Crying", "Cute", "Love", "Angry", "Evil", "Cool", "Festive", "Whiskered", "Evil", "Frightened", "Sad", "Winking", "Star", "Sick", "Surprised", "Hypnosis", "Tongue", "Exquisite"]
@@ -18,6 +24,7 @@ final class ViewCollectionCell: UICollectionViewCell {
         viewContent.contentMode = .scaleAspectFit
         super.init(frame: frame)
         contentView.addSubview(viewContent)
+        viewContent.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,5 +37,11 @@ final class ViewCollectionCell: UICollectionViewCell {
             viewContent.imageCatView.image = UIImage(named: String(index))
             viewContent.setupAV(valueSong: index)
         }
+    }
+}
+
+extension ViewCollectionCell: EmotionViewDelegate {
+    func showAlert() {
+        delegate?.present()
     }
 }

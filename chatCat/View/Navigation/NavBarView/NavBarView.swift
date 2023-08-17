@@ -9,13 +9,14 @@ import UIKit
 
 protocol NavBarViewDelegate: AnyObject {
     func showVC()
+    func showFree()
 }
 
 @IBDesignable
 final class NavBarView: UIView {
     
     @IBOutlet weak var titleText: UILabel!
-    
+    @IBOutlet weak var viewPro: UIImageView!
     weak var delegate: NavBarViewDelegate?
     
     override init(frame: CGRect) {
@@ -43,10 +44,18 @@ extension NavBarView {
         view.frame = self.bounds
         self.addSubview(view)
         self.backgroundColor = .white
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(addHandler(_:)))
+        viewPro.addGestureRecognizer(tap)
+        viewPro.isUserInteractionEnabled = true
     }
     
     func configureLabel(title: String) {
         titleText.text = title
         titleText.textColor = R.Colors.viewActive
+    }
+    
+    @objc func addHandler(_ sender: UITapGestureRecognizer) {
+        delegate?.showFree()
     }
 }

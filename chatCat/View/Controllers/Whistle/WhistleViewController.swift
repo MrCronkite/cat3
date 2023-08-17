@@ -24,14 +24,14 @@ final class WhistleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
-        setupAudioSession()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupAudio()
+        audioManager.setupAudioSession(true)
         setupView()
         setupAudio()
         updatePitchEffect()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-       audioManager.setupAudioSession(true)
     }
     
     @IBAction func showDirection(_ sender: Any) {
@@ -46,11 +46,7 @@ final class WhistleViewController: UIViewController {
     }
     
     @IBAction func goWhistle(_ sender: Any) {
-        if !audioEngine.isRunning {
-            audioPlayerNode.stop()
-            audioPlayerNode.reset()
-            audioManager.setupAudioSession(true)
-        } else {
+        if audioManager.checkSoundEnabled() { alert() } else {
             let audioURL = Bundle.main.url(forResource: "svist", withExtension: "mp3")!
             do {
                 audioFile = try AVAudioFile(forReading: audioURL)
@@ -60,7 +56,11 @@ final class WhistleViewController: UIViewController {
                 print("Ошибка при воспроизведении аудио: \(error.localizedDescription)")
             }
         }
-        
+    }
+    
+    func updatePitchEffect() {
+        let frequency = sliderNoise.value
+        pitchEffect.pitch = frequency
     }
 }
 
@@ -100,25 +100,24 @@ extension WhistleViewController {
         }
     }
     
-    func updatePitchEffect() {
-        let frequency = sliderNoise.value
-        pitchEffect.pitch = frequency
+    func alert() {
+        let alert = UIAlertController(title: "Oops", message: "Turn on the sound", preferredStyle: .alert)
+        let action = UIAlertAction(title: "ok", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
     }
-    
-        func setupAudioSession() {
-            do {
-                let audioSession = AVAudioSession.sharedInstance()
-                try audioSession.setCategory(.playback, mode: .default)
-                try audioSession.setActive(true)
-            } catch {
-                print("Ошибка при настройке аудиосессии: \(error.localizedDescription)")
-            }
-        }
 }
 
 extension WhistleViewController: NavBarViewDelegate {
     func showVC() {
         let vc = SettingsViewController()
         show(vc, sender: nil)
+    }
+    
+    func showFree() {
+        dismiss(animated: true)
+        let vc = StartFreeViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
 }

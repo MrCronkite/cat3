@@ -11,8 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VoiceViewController" customModule="chatCat" customModuleProvider="target">
             <connections>
+                <outlet property="btnPlay" destination="09e-Ri-G01" id="dYv-FP-98E"/>
                 <outlet property="lableText" destination="nJd-E7-LIs" id="fQK-2O-Zt8"/>
-                <outlet property="reRecordButton" destination="4Yd-L1-Mow" id="iQl-Gf-aam"/>
                 <outlet property="saveVoiceButton" destination="In3-h5-VGF" id="Tzb-eU-Xk1"/>
                 <outlet property="textFieldNameVoice" destination="7gm-f3-VFU" id="NKC-HK-Q5e"/>
                 <outlet property="timeVoiceText" destination="4De-og-xCh" id="jTk-Ze-S2f"/>
@@ -112,7 +112,7 @@
                         <constraint firstItem="3sH-c6-J7J" firstAttribute="centerY" secondItem="UL2-Le-yc7" secondAttribute="centerY" id="s3u-kW-W8M"/>
                     </constraints>
                 </view>
-                <textField opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Meows" borderStyle="roundedRect" placeholder="Enter Name Voice Memo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7gm-f3-VFU">
+                <textField opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Name Voice Memo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7gm-f3-VFU">
                     <rect key="frame" x="25" y="276" width="343" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="6lZ-4p-1ug"/>
@@ -139,21 +139,6 @@
                         <action selector="saveVoice:" destination="-1" eventType="touchUpInside" id="Hog-AQ-8uh"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Yd-L1-Mow">
-                    <rect key="frame" x="25" y="682" width="343" height="52"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="52" id="E9f-77-dbM"/>
-                        <constraint firstAttribute="width" constant="343" id="dZX-s0-Tmb"/>
-                    </constraints>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Re-record">
-                        <fontDescription key="titleFontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                    </buttonConfiguration>
-                    <connections>
-                        <action selector="reRecordVoice:" destination="-1" eventType="touchUpInside" id="xhM-kW-SOI"/>
-                    </connections>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="0Nh-Jb-I9V"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -162,10 +147,8 @@
                 <constraint firstItem="UL2-Le-yc7" firstAttribute="centerX" secondItem="SOw-xx-AuU" secondAttribute="centerX" id="B3T-ws-dUx"/>
                 <constraint firstItem="Pe5-BN-xGw" firstAttribute="top" secondItem="0Nh-Jb-I9V" secondAttribute="top" constant="73" id="Bxw-L1-GdZ"/>
                 <constraint firstItem="cjQ-yX-JUt" firstAttribute="leading" secondItem="0Nh-Jb-I9V" secondAttribute="leading" constant="16" id="Fb9-BQ-OEN"/>
-                <constraint firstItem="In3-h5-VGF" firstAttribute="top" secondItem="4Yd-L1-Mow" secondAttribute="bottom" constant="8" id="Mmz-AA-x2B"/>
                 <constraint firstItem="nJd-E7-LIs" firstAttribute="centerX" secondItem="SOw-xx-AuU" secondAttribute="centerX" id="N5d-jY-3ED"/>
                 <constraint firstItem="cjQ-yX-JUt" firstAttribute="top" secondItem="UL2-Le-yc7" secondAttribute="bottom" constant="20" id="N9w-WY-W56"/>
-                <constraint firstItem="4Yd-L1-Mow" firstAttribute="centerX" secondItem="SOw-xx-AuU" secondAttribute="centerX" id="RnN-17-uZJ"/>
                 <constraint firstItem="0Nh-Jb-I9V" firstAttribute="trailing" secondItem="eQl-t6-ci5" secondAttribute="trailing" constant="16" id="S1Z-f1-aLC"/>
                 <constraint firstItem="7gm-f3-VFU" firstAttribute="centerX" secondItem="SOw-xx-AuU" secondAttribute="centerX" id="SNd-Fe-9l7"/>
                 <constraint firstItem="eQl-t6-ci5" firstAttribute="top" secondItem="0Nh-Jb-I9V" secondAttribute="top" constant="19" id="Srj-Gz-mZp"/>

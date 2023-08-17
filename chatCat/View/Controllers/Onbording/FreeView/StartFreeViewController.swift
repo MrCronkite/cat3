@@ -7,6 +7,7 @@
 
 import UIKit
 import StoreKit
+import AppsFlyerLib
 
 protocol StartFreeViewControllerDelegate: AnyObject {
     func showButton()
@@ -25,6 +26,7 @@ final class StartFreeViewController: UIViewController {
     @IBOutlet weak var textPRO: UILabel!
     @IBOutlet weak var firstDaysText: UILabel!
     @IBOutlet weak var subtitle2: UILabel!
+    let pulseLayer = CALayer()
     
     weak var delegate: StartFreeViewControllerDelegate?
     
@@ -37,8 +39,6 @@ final class StartFreeViewController: UIViewController {
         
         setupTitleLabel()
         setupView()
-        
-        SKPaymentQueue.default().add(self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -51,16 +51,25 @@ final class StartFreeViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+       // pulseLayer.removeAllAnimations()
         UIView.animate(withDuration: 0.7) {
             self.buttonGetFree.backgroundColor = .white
         }
     }
     
     @IBAction func getFreeTrial(_ sender: Any) {
+        AppsFlyerLib.shared().logEvent("event", withValues: ["key" : "value"])
         let vc = TabBarController()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
+    
+    @IBAction func closeVC(_ sender: Any) {
+        let vc = TabBarController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
+    
 }
 
 extension StartFreeViewController {
@@ -119,7 +128,6 @@ extension StartFreeViewController {
     }
     
     private func setupPulsingAnimation() {
-        let pulseLayer = CALayer()
         pulseLayer.bounds = buttonGetFree.bounds
         pulseLayer.position = buttonGetFree.center
         pulseLayer.cornerRadius = 25
@@ -136,52 +144,53 @@ extension StartFreeViewController {
     }
 }
 
-extension StartFreeViewController: SKPaymentTransactionObserver {
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        for transaction in transactions {
-            switch transaction.transactionState {
-            case .purchased:
-                // Обработка успешной покупки
-                completeTransaction(transaction: transaction)
-            case .restored:
-                // Обработка восстановления покупки (если поддерживается)
-                restoreTransaction(transaction: transaction)
-            case .failed:
-                // Обработка неудачной покупки
-                failTransaction(transaction: transaction)
-            case .deferred:
-                // Покупка отложена (только для подписок, если поддерживается)
-                break
-            case .purchasing:
-                // Покупка выполняется
-                break
-            @unknown default:
-                break
-            }
-        }
-    }
-    
-    private func completeTransaction(transaction: SKPaymentTransaction) {
-        // Ваш код для обработки успешной покупки
-        // Например, разблокировка функциональности, доступ к контенту и т. д.
-        
-        // После успешной обработки покупки нужно завершить транзакцию:
-        SKPaymentQueue.default().finishTransaction(transaction)
-    }
-    
-    private func restoreTransaction(transaction: SKPaymentTransaction) {
-        // Ваш код для обработки восстановления покупки (если поддерживается)
-        // Например, разблокировка функциональности, доступ к контенту и т. д.
-        
-        // После успешной обработки восстановления покупки нужно завершить транзакцию:
-        SKPaymentQueue.default().finishTransaction(transaction)
-    }
-    
-    private func failTransaction(transaction: SKPaymentTransaction) {
-        // Ваш код для обработки неудачной покупки
-        // Например, показать сообщение об ошибке
-        
-        // После обработки неудачной покупки нужно завершить транзакцию:
-        SKPaymentQueue.default().finishTransaction(transaction)
-    }
-}
+//
+//extension StartFreeViewController: SKPaymentTransactionObserver {
+//    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+//        for transaction in transactions {
+//            switch transaction.transactionState {
+//            case .purchased:
+//                // Обработка успешной покупки
+//                completeTransaction(transaction: transaction)
+//            case .restored:
+//                // Обработка восстановления покупки (если поддерживается)
+//                restoreTransaction(transaction: transaction)
+//            case .failed:
+//                // Обработка неудачной покупки
+//                failTransaction(transaction: transaction)
+//            case .deferred:
+//                // Покупка отложена (только для подписок, если поддерживается)
+//                break
+//            case .purchasing:
+//                // Покупка выполняется
+//                break
+//            @unknown default:
+//                break
+//            }
+//        }
+//    }
+//
+//    private func completeTransaction(transaction: SKPaymentTransaction) {
+//        // Ваш код для обработки успешной покупки
+//        // Например, разблокировка функциональности, доступ к контенту и т. д.
+//
+//        // После успешной обработки покупки нужно завершить транзакцию:
+//        SKPaymentQueue.default().finishTransaction(transaction)
+//    }
+//
+//    private func restoreTransaction(transaction: SKPaymentTransaction) {
+//        // Ваш код для обработки восстановления покупки (если поддерживается)
+//        // Например, разблокировка функциональности, доступ к контенту и т. д.
+//
+//        // После успешной обработки восстановления покупки нужно завершить транзакцию:
+//        SKPaymentQueue.default().finishTransaction(transaction)
+//    }
+//
+//    private func failTransaction(transaction: SKPaymentTransaction) {
+//        // Ваш код для обработки неудачной покупки
+//        // Например, показать сообщение об ошибке
+//
+//        // После обработки неудачной покупки нужно завершить транзакцию:
+//        SKPaymentQueue.default().finishTransaction(transaction)
+//    }
+//}

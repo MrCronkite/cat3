@@ -14,6 +14,7 @@
                 <outlet property="directionLable" destination="UZ4-HS-SGU" id="xr9-Uh-B0u"/>
                 <outlet property="directionLable1" destination="r0K-96-miL" id="oas-Kq-Lzm"/>
                 <outlet property="directionLable2" destination="33N-gp-0Yz" id="l88-dW-ACr"/>
+                <outlet property="tintView" destination="6Fo-H1-eqk" id="UFx-km-MFi"/>
                 <outlet property="titleLable" destination="apN-8F-Tz1" id="7bX-eH-goW"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Kom-rV-ZML"/>
             </connections>
@@ -38,7 +39,7 @@
                         <constraint firstAttribute="height" constant="24" id="ui5-Ah-G0f"/>
                     </constraints>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="arrow"/>
+                    <buttonConfiguration key="configuration" style="plain" image="backArrow"/>
                     <connections>
                         <action selector="goBack:" destination="-1" eventType="touchUpInside" id="EKH-Xf-aa7"/>
                     </connections>
@@ -108,7 +109,7 @@
         </view>
     </objects>
     <resources>
-        <image name="arrow" width="24" height="24"/>
+        <image name="backArrow" width="18" height="17"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

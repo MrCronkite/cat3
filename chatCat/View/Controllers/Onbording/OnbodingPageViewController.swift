@@ -22,7 +22,7 @@ final class OnbordingPageViewController: UIViewController {
     
     let nextButton: UIButton = {
         let view = UIButton()
-        view.setTitle("Continuу", for: .normal)
+        view.setTitle("Continue", for: .normal)
         view.backgroundColor = R.Colors.btnActive
         view.setTitleColor(.white, for: .normal)
         view.layer.cornerRadius = 25
@@ -48,7 +48,7 @@ extension OnbordingPageViewController {
         }
         
         NSLayoutConstraint.activate([
-            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -28),
+            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -96),
             nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             nextButton.heightAnchor.constraint(equalToConstant: 52),
@@ -137,9 +137,9 @@ extension OnbordingPageViewController: UIPageViewControllerDataSource, UIPageVie
         if let index = R.Strings.Onboarding.subtitles.firstIndex(of: (viewController.view.subviews.last as? UILabel)?.text ?? "") {
             pageControl.currentPage = index
             let nextIndex = (index + 1) % R.Strings.Onboarding.subtitles.count
-            return viewControllerAtIndex(nextIndex)
-        } else if currentIndex == 3 {
-            return nil
+            if nextIndex > 0 {
+                return viewControllerAtIndex(nextIndex)
+            }
         }
         return nil
     }

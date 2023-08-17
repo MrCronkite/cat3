@@ -13,6 +13,7 @@ final class ChatViewController: UIViewController {
     let animationLayer1 = CALayer()
     let animationLayer = CALayer()
     let audioManager = AudioManagerImpl()
+    var isPlaying = true
     
     @IBOutlet weak var titleText: UILabel!
     @IBOutlet weak var reloadVoice: UIButton!
@@ -23,7 +24,7 @@ final class ChatViewController: UIViewController {
     @IBOutlet weak var playButtonCat: UIButton!
     @IBOutlet weak var catView: UIView!
     @IBOutlet weak var meView: UIView!
-  
+    
     @IBOutlet weak var meImage: UIImageView!
     @IBOutlet weak var catImage: UIImageView!
     
@@ -38,12 +39,68 @@ final class ChatViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tapGesture)
+        
         setupView()
+    }
+    
+    deinit {
+        print("hi")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        audioManager.setupAudioSession(true)
     }
     
     func showSetting(view: UIViewController) {
         let vc1 = SettingsViewController()
         view.navigationController?.pushViewController(vc1, animated: true)
+    }
+    
+    @objc func handleTap() {
+        view.endEditing(true)
+    }
+    
+    @IBAction func reloadButtonCat(_ sender: Any) {
+        timerDidFireCat()
+    }
+    
+    @IBAction func playingCat(_ sender: Any) {
+        if isPlaying {
+            isPlaying = false
+            animationButton(btn: playButtonCat)
+            playButtonCat.setImage(R.Images.Chat.pauseImg130, for: .normal)
+            
+        } else {
+            isPlaying = true
+            playButtonCat.setImage(R.Images.Chat.micro130, for: .normal)
+            showReloadBtn()
+            self.animationLayer.removeAllAnimations()
+            self.animationLayer1.removeAllAnimations()
+            self.animationLayer1.borderColor = UIColor.clear.cgColor
+            self.animationLayer.borderColor = UIColor.clear.cgColor
+        }
+    }
+    
+    @IBAction func playingMe(_ sender: Any) {
+        if isPlaying {
+            isPlaying = false
+            animationButton(btn: playButton)
+            playButton.setImage(R.Images.Chat.pauseImg, for: .normal)
+        } else {
+            isPlaying = true
+            playButton.setImage(R.Images.Chat.micro, for: .normal)
+            if audioManager.checkSoundEnabled() { alert() } else {
+                showSticker()
+                timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(timerDidFireMe), userInfo: nil, repeats: false)
+            }
+            self.animationLayer.removeAllAnimations()
+            self.animationLayer1.removeAllAnimations()
+            self.animationLayer1.borderColor = UIColor.clear.cgColor
+            self.animationLayer.borderColor = UIColor.clear.cgColor
+        }
     }
 }
 
@@ -75,19 +132,15 @@ extension ChatViewController {
         textTranslate.textColor = R.Colors.viewActive
         textTranslate.borderStyle = .none
         textTranslate.delegate = self
-
+        
         playButtonCat.isHidden = true
+        titleText.textColor = R.Colors.viewActive
+        titleText.isHidden = true
+        reloadVoice.isHidden = true
+        
         let text = "Enter text to translate..."
-        let attributedText = NSAttributedString(string: text, attributes: [NSAttributedString.Key.foregroundColor : R.Colors.viewActive] )
+        let attributedText = NSAttributedString(string: text, attributes: [NSAttributedString.Key.foregroundColor : R.Colors.viewInactive] )
         textTranslate.attributedPlaceholder = attributedText
-        
-        let longPressGesture = UILongPressGestureRecognizer(target: self,
-                                                            action: #selector(handleLongPressMe(_:)))
-        playButton.addGestureRecognizer(longPressGesture)
-        
-        let longPressGestureCat = UILongPressGestureRecognizer(target: self,
-                                                               action: #selector(handleLongPressCat(_:)))
-        playButtonCat.addGestureRecognizer(longPressGestureCat)
         
         let tapPressGestureMe = UITapGestureRecognizer(target: self,
                                                        action: #selector(handleTapMe(_:)))
@@ -96,39 +149,6 @@ extension ChatViewController {
         let tapPressGestureCat = UITapGestureRecognizer(target: self,
                                                         action: #selector(handleTapCat(_:)))
         catView.addGestureRecognizer(tapPressGestureCat)
-    }
-    
-    @objc func handleLongPressMe(_ gesture: UILongPressGestureRecognizer) {
-           if gesture.state == .began {
-               animationButton(btn: playButton)
-               playButton.setImage(R.Images.Chat.pauseImg, for: .normal)
-           } else if gesture.state == .ended {
-               playButton.setImage(R.Images.Chat.micro, for: .normal)
-               showSticker()
-               timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerDidFireMe), userInfo: nil, repeats: false)
-               
-               self.animationLayer.removeAllAnimations()
-               self.animationLayer1.removeAllAnimations()
-               self.animationLayer1.borderColor = UIColor.clear.cgColor
-               self.animationLayer.borderColor = UIColor.clear.cgColor
-           }
-    }
-    
-    @objc func handleLongPressCat(_ gesture: UILongPressGestureRecognizer) {
-           if gesture.state == .began {
-               animationButton(btn: playButtonCat)
-               playButtonCat.setImage(R.Images.Chat.pauseImg130, for: .normal)
-               
-           } else if gesture.state == .ended {
-               playButtonCat.setImage(R.Images.Chat.micro130, for: .normal)
-               showSticker()
-               timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(timerDidFireCat), userInfo: nil, repeats: false)
-               
-               self.animationLayer.removeAllAnimations()
-               self.animationLayer1.removeAllAnimations()
-               self.animationLayer1.borderColor = UIColor.clear.cgColor
-               self.animationLayer.borderColor = UIColor.clear.cgColor
-           }
     }
     
     @objc func timerDidFireMe() {
@@ -148,13 +168,21 @@ extension ChatViewController {
         playButton.isHidden = true
         meView.isHidden = false
         catView.isHidden = false
-        timer?.invalidate()
+        reloadVoice.isHidden = true
+        titleText.isHidden = true
+    }
+    
+    private func showReloadBtn() {
+        reloadVoice.isHidden = false
+        titleText.isHidden = false
+        playButtonCat.isHidden = true
+        meView.isHidden = true
+        catView.isHidden = true
     }
     
     private func showSticker() {
         let randomNumber = Int(arc4random_uniform(UInt32(21 - 1 + 1))) + 1
-        let soundURL = Bundle.main.url(forResource: "sound\(randomNumber)", withExtension: "m4a")
-        audioManager.setupPlayer(link: soundURL!)
+        stickerView.setupAV(valueSong: randomNumber)
         stickerView.setupImage(image: String(randomNumber))
         stickerView.isHidden = false
         playButtonCat.isHidden = true
@@ -162,8 +190,6 @@ extension ChatViewController {
         playButton.isHidden = true
         meView.isHidden = true
         catView.isHidden = true
-        audioManager.setupAudioSession(true)
-        audioManager.play()
         
         AnalyticsManager.shared.log(.characterSelected(.init(name: String(randomNumber), origin: "ChatViewController", timestamp: Data())))
     }
@@ -223,6 +249,13 @@ extension ChatViewController {
         animationLayer1.add(animation1, forKey: "pulseAnimation1")
         animationLayer.add(animation, forKey: "pulseAnimation")
     }
+    
+    func alert() {
+        let alert = UIAlertController(title: "Oops", message: "Turn on the sound", preferredStyle: .alert)
+        let action = UIAlertAction(title: "ok", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
 }
 
 extension ChatViewController: NavBarViewDelegate {
@@ -230,14 +263,23 @@ extension ChatViewController: NavBarViewDelegate {
         let vc = SettingsViewController()
         show(vc, sender: nil)
     }
+    
+    func showFree() {
+        dismiss(animated: true)
+        let vc = StartFreeViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
 }
 
 extension ChatViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        showSticker()
-        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(timerDidFireMe), userInfo: nil, repeats: false)
         
+        if audioManager.checkSoundEnabled() { alert() } else {
+            timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(timerDidFireMe), userInfo: nil, repeats: false)
+            showSticker()
+        }
         return true
     }
 }

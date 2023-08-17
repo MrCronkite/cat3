@@ -6,88 +6,57 @@
 //
 
 import UIKit
+import GoogleMobileAds
+import Lottie
 
-final class PreviewViewController: UIViewController {
+final class PreviewViewController: UIViewController, GADBannerViewDelegate {
     
     var timer: Timer?
     
-    let viewheart: UIView = {
-        let view = UIView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
-        view.backgroundColor = .magenta
-        return view
+    @IBOutlet weak var loadViewBar: UIView!
+    
+    private let banner: GADBannerView = {
+        let banner = GADBannerView()
+        banner.adUnitID = "ca-app-pub-9036313325916079/1525004192"
+        banner.load(GADRequest())
+        banner.backgroundColor = .secondarySystemBackground
+        return banner
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = R.Colors.btnActive
         
-        startTimer()
-        drawStar()
-        startPulsatingAnimation()
-        viewheart.center = view.center
-        view.addSubview(viewheart)
-    }
-    
-    func startTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(timerDidFire), userInfo: nil, repeats: false)
-    }
-    
-    @objc func timerDidFire() {
-        let onbording = OnbordingPageViewController()
-        timer?.invalidate()
-        onbording.modalPresentationStyle = .fullScreen
-        present(onbording, animated: true)
-    }
-    
-    private func drawStar() {
-        let starPath = UIBezierPath()
-        let size: CGFloat = min(viewheart.bounds.width, viewheart.bounds.height)
-        let scaleFactor: CGFloat = size / 100.0
-        let offsetX = viewheart.bounds.width / 2
-        let offsetY = viewheart.bounds.height / 2
+        banner.rootViewController = self
+        banner.delegate = self
+        view.backgroundColor = R.Colors.bgColor
+        view.addSubview(banner)
         
-        // Углы звезды
-        let starPoints: [CGPoint] = [
-            CGPoint(x: 50, y: 10),
-            CGPoint(x: 61.8, y: 39.5),
-            CGPoint(x: 95.1, y: 39.5),
-            CGPoint(x: 68.7, y: 63),
-            CGPoint(x: 79.3, y: 91),
-            CGPoint(x: 50, y: 75.5),
-            CGPoint(x: 20.7, y: 91),
-            CGPoint(x: 31.3, y: 63),
-            CGPoint(x: 4.9, y: 39.5),
-            CGPoint(x: 38.2, y: 39.5)
-        ]
+        let animationView = LottieAnimationView(name: "cat_loader")
+        animationView.frame = loadViewBar.frame
+        animationView.loopMode = .loop // или .playOnce для воспроизведения один раз
+        animationView.animationSpeed = 1// Скорость анимации
+        view.addSubview(animationView)
         
-        // Создаем путь звезды
-        for (index, point) in starPoints.enumerated() {
-            let adjustedX = point.x * scaleFactor + offsetX
-            let adjustedY = point.y * scaleFactor + offsetY
-            
-            if index == 0 {
-                starPath.move(to: CGPoint(x: adjustedX, y: adjustedY))
-            } else {
-                starPath.addLine(to: CGPoint(x: adjustedX, y: adjustedY))
-            }
+        animationView.play()
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(timerFinished), userInfo: nil, repeats: false)
+    }
+    
+    @objc func timerFinished() {
+           let vc = OnbordingPageViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
         }
-        
-        starPath.close()
-        
-        let starLayer = CAShapeLayer()
-        starLayer.path = starPath.cgPath
-        starLayer.fillColor = R.Colors.viewActive.cgColor
-        
-        viewheart.layer.addSublayer(starLayer)
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
     }
     
-    private func startPulsatingAnimation() {
-        let pulsatingAnimation = CABasicAnimation(keyPath: "opacity")
-        pulsatingAnimation.fromValue = 1.0
-        pulsatingAnimation.toValue = 0.1
-        pulsatingAnimation.duration = 1
-        pulsatingAnimation.autoreverses = true
-        pulsatingAnimation.repeatCount = .infinity
-        viewheart.layer.add(pulsatingAnimation, forKey: "pulsating")
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("Баннер загрузил рекламу")
+    }
+    
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+        print("Баннер не смог загрузить рекламу: \(error.localizedDescription)")
     }
 }

@@ -43,12 +43,26 @@ final class AudioManagerImpl {
     }
     
     func deactivateAudioSession() {
-            do {
-                try audioSession.setCategory(.record, mode: .default)
-            } catch {
-                print("Ошибка при переводе аудио сессии в неактивное состояние: \(error.localizedDescription)")
-            }
+        do {
+            try audioSession.setCategory(.record, mode: .default)
+        } catch {
+            print("Ошибка при переводе аудио сессии в неактивное состояние: \(error.localizedDescription)")
         }
+    }
+    
+    func alert() {
+        let alert = UIAlertController(title: "hi", message: "включи звук", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "ok", style: .default)
+        alert.addAction(alertAction)
+    }
+    
+    func checkSoundEnabled() -> Bool {
+        if audioSession.isOtherAudioPlaying || audioSession.outputVolume > 0.0 {
+            return false
+        } else {
+            return true
+        }
+    }
     
     func play() {
         audioPlayer.play()

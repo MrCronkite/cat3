@@ -8,6 +8,10 @@
 import UIKit
 import AVFoundation
 
+protocol EmotionViewDelegate: AnyObject {
+    func showAlert()
+}
+
 @IBDesignable
 final class EmotionView: UIView {
     
@@ -17,6 +21,8 @@ final class EmotionView: UIView {
     @IBOutlet weak var imageCatView: UIImageView!
     @IBOutlet weak var volumeUp: UIImageView!
     @IBOutlet weak var lableText: UILabel!
+    
+    weak var delegate: EmotionViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,6 +61,7 @@ extension EmotionView {
             self.layer.borderColor = UIColor.blue.cgColor
             self.layer.borderWidth = 1
         }
+        delegate?.showAlert()
     }
     
     @objc func timerDidFire() {
@@ -67,7 +74,7 @@ extension EmotionView {
     }
     
     func setupAV(valueSong: Int) {
-        guard let soundURL = Bundle.main.url(forResource: "sound\(valueSong)", withExtension: "m4a") else {
+        guard let soundURL = Bundle.main.url(forResource: "\(valueSong)", withExtension: "m4a") else {
             fatalError("Звуковой файл не найден")
         }
         audioManager.setupPlayer(link: soundURL )

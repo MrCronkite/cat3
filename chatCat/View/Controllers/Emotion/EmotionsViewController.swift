@@ -12,6 +12,7 @@ final class EmotionsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var navBar: NavBarView!
+    //let vc = EmotionView()
     
     var audioManager = AudioManagerImpl()
     
@@ -47,6 +48,19 @@ extension EmotionsViewController {
         collectionView.register(ViewCollectionCell.self, forCellWithReuseIdentifier: "ViewCollectionCell")
         view.addSubview(collectionView)
     }
+    
+   private func alert() {
+        let alert = UIAlertController(title: "Oops", message: "Turn on the sound", preferredStyle: .alert)
+        let action = UIAlertAction(title: "ok", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
+}
+
+extension EmotionsViewController: ViewCollectionCellProtocol{
+    func present() {
+        if audioManager.checkSoundEnabled() { alert() } 
+    }
 }
 
 extension EmotionsViewController: UICollectionViewDataSource {
@@ -62,6 +76,7 @@ extension EmotionsViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ViewCollectionCell", for: indexPath) as! ViewCollectionCell
        counter += 1
        cell.setupCell(index: counter)
+        cell.delegate = self
        return cell
     }
 }
@@ -70,5 +85,11 @@ extension EmotionsViewController: NavBarViewDelegate {
     func showVC() {
         let vc = SettingsViewController()
         show(vc, sender: nil)
+    }
+    
+    func showFree() {
+        let vc = StartFreeViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
 }

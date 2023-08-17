@@ -13,7 +13,7 @@ final class NotesViewController: UIViewController {
     var voices: [Voices] = []
     
     var audioRecorder: AVAudioRecorder?
-    var isRecording = false
+    var isRecording = true
     let animationLayer1 = CALayer()
     let animationLayer = CALayer()
     var link: URL?
@@ -44,44 +44,9 @@ final class NotesViewController: UIViewController {
     }
     
     @IBAction func recordingVoice(_ sender: Any) {
-        
-    }
-}
-
-extension NotesViewController {
-    private func setupView() {
-        view.backgroundColor = .white
-        titleDirection.textColor = R.Colors.viewActive
-        
-        navBarView.configureLabel(title: "Voice notes")
-        navigationController?.navigationBar.isHidden = true
-        
-        navBarView.delegate = self
-        tableView.backgroundColor = .white
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.rowHeight = UITableView.noIntrinsicMetric
-        tableView.separatorStyle = .none
-        tableView.register(CustomViewCell.self, forCellReuseIdentifier: "\(CustomViewCell.self)")
-        
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
-        playButton.addGestureRecognizer(longPressGesture)
-        
-        if let data = storeManager.get(forKey: .keyVoice) {
-            self.voices = data
-            tableView.isHidden = false
-            catImageView.isHidden = true
-            titleDirection.isHidden = true
-        } else {
-            tableView.isHidden = true
-            catImageView.isHidden = false
-            titleDirection.isHidden = false
-        }
-    }
-    
-    @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
-        
-        if gesture.state == .began {
+        if isRecording {
+            setAudioRecorder()
+            isRecording = false
             animationLayer.frame = playButton.frame
             animationLayer.cornerRadius = 50
             animationLayer.borderColor = R.Colors.borderCircle.cgColor
@@ -114,14 +79,16 @@ extension NotesViewController {
             
             animationLayer1.add(animation1, forKey: "pulseAnimation1")
             animationLayer.add(animation, forKey: "pulseAnimation")
+            playButton.setImage(R.Images.Chat.pauseImg, for: .normal)
             
             saveFile()
             
             if let recorder = audioRecorder, !recorder.isRecording {
                 recorder.record()
             }
-            
-        } else if gesture.state == .ended {
+        } else {
+            playButton.setImage(R.Images.Chat.micro, for: .normal)
+            isRecording = true
             self.animationLayer.removeAllAnimations()
             self.animationLayer1.removeAllAnimations()
             let vc = VoiceViewController()
@@ -132,6 +99,35 @@ extension NotesViewController {
             if let recorder = audioRecorder, recorder.isRecording {
                 recorder.stop()
             }
+        }
+    }
+}
+
+extension NotesViewController {
+    private func setupView() {
+        view.backgroundColor = .white
+        titleDirection.textColor = R.Colors.viewActive
+        
+        navBarView.configureLabel(title: "Voice notes")
+        navigationController?.navigationBar.isHidden = true
+        
+        navBarView.delegate = self
+        tableView.backgroundColor = .white
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.rowHeight = UITableView.noIntrinsicMetric
+        tableView.separatorStyle = .none
+        tableView.register(CustomViewCell.self, forCellReuseIdentifier: "\(CustomViewCell.self)")
+        
+        if let data = storeManager.get(forKey: .keyVoice) {
+            self.voices = data
+            tableView.isHidden = false
+            catImageView.isHidden = true
+            titleDirection.isHidden = true
+        } else {
+            tableView.isHidden = true
+            catImageView.isHidden = false
+            titleDirection.isHidden = false
         }
     }
 }
@@ -186,6 +182,8 @@ extension NotesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
+            print(voices)
+            audioManger.setupPlayer(link: voices[indexPath.row].voiceUrl)
             UIView.animate(withDuration: 0.1, animations: {
                 cell.alpha = 0.7
                 cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
@@ -195,7 +193,18 @@ extension NotesViewController: UITableViewDelegate {
                     cell.transform = CGAffineTransform.identity
                 })
             }
+            audioManger.setupAudioSession(true)
+            if audioManger.checkSoundEnabled() { alert() } else {
+                audioManger.play()
+            }
         }
+    }
+    
+    func alert() {
+        let alert = UIAlertController(title: "Oops", message: "Turn on the sound", preferredStyle: .alert)
+        let action = UIAlertAction(title: "ok", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
     }
 }
 
@@ -203,6 +212,12 @@ extension NotesViewController: NavBarViewDelegate {
     func showVC() {
         let vc = SettingsViewController()
         show(vc, sender: nil)
+    }
+    
+    func showFree() {
+        let vc = StartFreeViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
 }
 

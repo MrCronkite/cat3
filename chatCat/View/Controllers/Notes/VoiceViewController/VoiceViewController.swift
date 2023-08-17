@@ -21,10 +21,11 @@ final class VoiceViewController: UIViewController {
     
     weak var delegate: VoiceViewControllerDelegate?
     
+    var timer: Timer?
+    @IBOutlet weak var btnPlay: UIButton!
     @IBOutlet weak var lableText: UILabel!
     @IBOutlet weak var timeVoiceText: UILabel!
     @IBOutlet weak var textFieldNameVoice: UITextField!
-    @IBOutlet weak var reRecordButton: UIButton!
     @IBOutlet weak var saveVoiceButton: UIButton!
     @IBOutlet weak var voiceView: UIView!
     
@@ -32,14 +33,13 @@ final class VoiceViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tapGesture)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        audioManager.deactivateAudioSession()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        audioManager.deactivateAudioSession()
+    @objc func handleTap() {
+        view.endEditing(true)
     }
     
     @IBAction func closeVC(_ sender: Any) {
@@ -49,7 +49,16 @@ final class VoiceViewController: UIViewController {
     
     @IBAction func playVoice(_ sender: Any) {
         audioManager.setupAudioSession(true)
-        audioManager.play()
+        if audioManager.checkSoundEnabled() { alert() } else {
+            btnPlay.setImage(UIImage(named: "stopVoice"), for: .normal)
+            audioManager.play()
+            let interval = Int(audioManager.audioPlayer.duration)
+            timer = Timer.scheduledTimer(timeInterval: TimeInterval(interval), target: self, selector: #selector(timerFinished), userInfo: nil, repeats: false)
+        }
+    }
+    
+    @objc func timerFinished() {
+        btnPlay.setImage(UIImage(named: "playVoice"), for: .normal)
     }
     
     @IBAction func saveVoice(_ sender: Any) {
@@ -57,8 +66,11 @@ final class VoiceViewController: UIViewController {
         dateFormatter.dateFormat = "MMMM dd 'at' h:mm a"
         
         let dateString = dateFormatter.string(from: Date())
-        
-        let voice: Voices = .init(name: textFieldNameVoice.text ?? "No name voice",
+        var name = ""
+        if textFieldNameVoice.text! == "" { name = "No name voice" } else {
+            name = textFieldNameVoice.text!
+        }
+        let voice: Voices = .init(name: name,
                                   voiceUrl: audioLink!,
                                   data: dateString,
                                   duration: self.duration)
@@ -66,11 +78,6 @@ final class VoiceViewController: UIViewController {
         voices.append(voice)
         storeManager.set(voices, forKey: .keyVoice)
         delegate?.showVoices(voices: voices)
-        navigationController?.popToRootViewController(animated: true)
-    }
-    
-    @IBAction func reRecordVoice(_ sender: Any) {
-        deleteAudioFile(at: audioLink!)
         navigationController?.popToRootViewController(animated: true)
     }
     
@@ -96,13 +103,22 @@ extension VoiceViewController {
         textFieldNameVoice.layer.borderColor = R.Colors.bgSettingd.cgColor
         textFieldNameVoice.borderStyle = .none
         textFieldNameVoice.layer.cornerRadius = 14
-        textFieldNameVoice.layer.borderWidth = 1
+        textFieldNameVoice.layer.borderWidth = 2
         textFieldNameVoice.textColor = R.Colors.viewActive
+        textFieldNameVoice.tintColor = .blue
         textFieldNameVoice.delegate = self
         
         saveVoiceButton.layer.cornerRadius = 25
         saveVoiceButton.setTitleColor(.white, for: .normal)
         saveVoiceButton.backgroundColor = R.Colors.btnActive
+        
+        let placeholderText = "Enter Name Voice Memo"
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.gray,
+            .font: UIFont.systemFont(ofSize: 14)
+        ]
+        let attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: attributes)
+        textFieldNameVoice.attributedPlaceholder = attributedPlaceholder
         
         let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 14, height: textFieldNameVoice.frame.height))
         textFieldNameVoice.leftView = leftPaddingView
@@ -117,14 +133,19 @@ extension VoiceViewController {
     }
     
     func deleteAudioFile(at url: URL) {
-        
         let fileManager = FileManager.default
         do {
             try fileManager.removeItem(at: url)
-            print("Аудиофайл успешно удален.")
         } catch {
             print("Ошибка при удалении аудиофайла: \(error)")
         }
+    }
+    
+    func alert() {
+        let alert = UIAlertController(title: "Oops", message: "Turn on the sound", preferredStyle: .alert)
+        let action = UIAlertAction(title: "ok", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
     }
 }
 

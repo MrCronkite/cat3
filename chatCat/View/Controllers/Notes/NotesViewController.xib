@@ -25,26 +25,26 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ajt-Z6-U8b">
-                    <rect key="frame" x="104" y="409" width="185" height="34"/>
+                    <rect key="frame" x="71.666666666666686" y="401" width="250" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="185" id="OZ1-jg-QeB"/>
-                        <constraint firstAttribute="height" constant="34" id="coe-D6-Krn"/>
+                        <constraint firstAttribute="width" constant="250" id="OZ1-jg-QeB"/>
+                        <constraint firstAttribute="height" constant="50" id="coe-D6-Krn"/>
                     </constraints>
                     <string key="text">Capture your favorite moments 
 with your cat. Create new emoji.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="catMeew" translatesAutoresizingMaskIntoConstraints="NO" id="aYp-sw-eNb">
-                    <rect key="frame" x="99.666666666666686" y="199" width="194" height="194"/>
+                    <rect key="frame" x="99.666666666666686" y="191" width="194" height="194"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="194" id="jhN-1e-T1o"/>
                         <constraint firstAttribute="height" constant="194" id="q5F-ix-lsR"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RcI-aA-RPF">
-                    <rect key="frame" x="146.66666666666666" y="535" width="100" height="100"/>
+                    <rect key="frame" x="146.66666666666666" y="543" width="100" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="ZaK-Dy-YYz"/>
                         <constraint firstAttribute="width" constant="100" id="oPG-Dj-ZvC"/>
@@ -52,8 +52,7 @@ with your cat. Create new emoji.</string>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="micro"/>
                     <connections>
-                        <action selector="recording:" destination="-1" eventType="touchDownRepeat" id="hjh-nL-RmE"/>
-                        <action selector="recordingVoice:" destination="-1" eventType="touchUpInside" id="hjd-Dv-024"/>
+                        <action selector="recordingVoice:" destination="-1" eventType="touchUpInside" id="c8I-NZ-8IF"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EBs-M1-9jy" customClass="ShadowView" customModule="chatCat" customModuleProvider="target">
